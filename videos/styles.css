@@ -184,6 +184,8 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap:15px;
+    
 }
 
 .video {
@@ -284,6 +286,55 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     color: var(--muted);
     line-height: 1.6;
 }
+
+.feed-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.feed-video-card {
+    max-width: 300px;
+}
+
+.feed-video-thumbnail {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.feed-video-details {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.feed-video-details h2 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    line-height: 1.3;
+}
+
+.feed-video-details p,
+.feed-video-details > div > span {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.feed-video-details p {
+    margin-bottom: 4px;
+}
+
+.feed-video-details .channel-avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+}
+
 .container{
     width: 100%;
     max-width: none;
