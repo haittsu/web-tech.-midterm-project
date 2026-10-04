@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crystal Play kz — видеоплатформа с видео, короткими Shorts и мессенджером.">
+    <title>Crystal Play kz — Главная</title>
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+  </head>
+  <body>
+    <!-- Общие иконки: SVG без сторонних шрифтов и JavaScript. -->
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+        <symbol id="icon-trending" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-10M15 5h6v6"/></symbol>
+        <symbol id="icon-subscriptions" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="3"/><path d="M6 5h12M9 2h6m-5 10 5 3-5 3Z"/></symbol>
+        <symbol id="icon-library" viewBox="0 0 24 24"><rect x="7" y="3" width="14" height="18" rx="2"/><path d="M3 6v12m9-10 5 4-5 4Z"/></symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+        <symbol id="icon-messenger" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 10 10 0 0 1-4-.9L3 21l1.4-4.7A9 9 0 1 1 21 11.5Z"/><path d="m7 13 4-4 2 3 4-3"/></symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+        <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.5"/></symbol>
+        <symbol id="icon-play" viewBox="0 0 24 24"><path d="m9 5 11 7-11 7Z"/></symbol>
+        <symbol id="icon-shorts" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="5" transform="rotate(20 12 12)"/><path d="m10 8 6 4-6 4Z"/></symbol>
+        <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+        <symbol id="icon-comment" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 10 10 0 0 1-4-.9L3 21l1.4-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 11.5h.1m3.9 0h.1m3.9 0h.1"/></symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24"><path d="m6 12 4 4 8-8"/></symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header" id="top">
+      <div class="header-inner container-fluid">
+        <a class="brand" href="index.html" aria-label="Crystal Play kz, главная страница">
+          <span class="brand-mark"><svg class="icon" aria-hidden="true"><use href="#icon-play"/></svg></span>
+          <span>Crystal <span class="brand-light">Play</span><sup>kz</sup></span>
+        </a>
+
+        <!-- Поиск пока только визуальный: disabled исключает ввод и отправку. -->
+        <form class="search-form" role="search" aria-label="Поиск видео">
+          <label class="visually-hidden" for="video-search">Поиск видео</label>
+          <input class="form-control" id="video-search" type="search" placeholder="Найти что-то интересное" disabled>
+          <button type="button" class="search-button" aria-label="Найти видео" disabled>
+            <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
+          </button>
+        </form>
+
+        <!-- Четыре будущие страницы обозначены, но ещё не создаются. -->
+        <nav class="main-nav" aria-label="Основная навигация">
+          <ul class="list-unstyled mb-0">
+            <li><a href="index.html" class="nav-item is-current" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-home"/></svg><span>Главная</span></a></li>
+            <li><span class="nav-item" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#icon-trending"/></svg><span>В тренде</span></span></li>
+            <li><span class="nav-item" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#icon-subscriptions"/></svg><span>Подписки</span></span></li>
+            <li><span class="nav-item" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#icon-library"/></svg><span>Библиотека</span></span></li>
+          </ul>
+        </nav>
+
+        <div class="header-actions d-flex align-items-center">
+          <button class="icon-button messenger-button" type="button" aria-label="Мессенджер" disabled><svg class="icon" aria-hidden="true"><use href="#icon-messenger"/></svg></button>
+          <button class="icon-button notification-button" type="button" aria-label="Уведомления" disabled><svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg><span class="notification-dot"></span></button>
+          <button class="profile-avatar" type="button" aria-label="Профиль пользователя" disabled>А</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-layout container-fluid">
+      <aside class="sidebar" aria-labelledby="shorts-heading">
+        <div class="sidebar-heading"><h2 id="shorts-heading"><svg class="icon shorts-icon" aria-hidden="true"><use href="#icon-shorts"/></svg>Shorts</h2><span class="shorts-subtitle">Коротко и интересно</span></div>
+        <!-- Вертикальные превью Shorts: статический интерфейс без воспроизведения. -->
+        <div class="shorts-list">
+          <article class="short-card">
+            <img src="assets/images/mountains.jpg" alt="Горный пейзаж с долиной и снежными вершинами" width="540" height="960">
+            <span class="short-duration">0:38</span>
+            <div class="short-actions" aria-label="Статистика Shorts">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg><span>12,4 тыс.</span><span class="visually-hidden">отметок нравится</span></span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-comment"/></svg><span>248</span><span class="visually-hidden">комментариев</span></span>
+            </div>
+            <div class="short-content">
+              <h3>На минуту ближе<br>к облакам</h3>
+              <p>128 тыс. просмотров</p>
+              <div class="short-author"><span class="mini-avatar">N</span><span>@northstudio</span></div>
+            </div>
+          </article>
+          <article class="short-card">
+            <img src="assets/images/forest.jpg" alt="Солнечные лучи среди высоких деревьев в лесу" width="540" height="960" loading="lazy">
+            <span class="short-duration">0:24</span>
+            <div class="short-actions" aria-label="Статистика Shorts">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg><span>8,7 тыс.</span><span class="visually-hidden">отметок нравится</span></span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-comment"/></svg><span>156</span><span class="visually-hidden">комментариев</span></span>
+            </div>
+            <div class="short-content">
+              <h3>Остановись.<br>Просто послушай.</h3>
+              <p>94 тыс. просмотров</p>
+              <div class="short-author"><span class="mini-avatar">W</span><span>@wildandfree</span></div>
+            </div>
+          </article>
+          <article class="short-card">
+            <img src="assets/images/city.jpg" alt="Ночная улица с освещёнными небоскрёбами" width="540" height="960" loading="lazy">
+            <span class="short-duration">0:30</span>
+            <div class="short-actions" aria-label="Статистика Shorts">
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg><span>21 тыс.</span><span class="visually-hidden">отметок нравится</span></span>
+              <span><svg class="icon" aria-hidden="true"><use href="#icon-comment"/></svg><span>392</span><span class="visually-hidden">комментариев</span></span>
+            </div>
+            <div class="short-content">
+              <h3>Ночной город<br>за 30 секунд</h3>
+              <p>204 тыс. просмотров</p>
+              <div class="short-author"><span class="mini-avatar">U</span><span>@urbanstories</span></div>
+            </div>
+          </article>
+        </div>
+        <footer class="sidebar-footer">
+          <span class="about-link" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#icon-info"/></svg>О платформе</span>
+          <p>Место для твоих интересов.<br>Смотри. Вдохновляйся. Открывай.</p>
+          <small>© 2026 Crystal Play kz</small>
+        </footer>
+      </aside>
+
+      <main class="main-content" id="main-content">
+        <section aria-labelledby="recommendations-heading">
+          <div class="section-heading d-flex align-items-center justify-content-between">
+            <div><p class="eyebrow">ТВОЯ ЕЖЕДНЕВНАЯ ПОРЦИЯ ВДОХНОВЕНИЯ</p><h1 id="recommendations-heading">Есть что посмотреть<span class="title-dot">.</span></h1></div>
+            <span class="feed-label"><span></span>Подобрано для тебя</span>
+          </div>
+          <ul class="category-list list-unstyled" aria-label="Категории видео, статический интерфейс">
+            <li><span class="category is-selected">Все видео</span></li>
+            <li><span class="category">Путешествия</span></li>
+            <li><span class="category">Технологии</span></li>
+            <li><span class="category">Музыка</span></li>
+            <li><span class="category">Творчество</span></li>
+            <li><span class="category">Образ жизни</span></li>
+            <li><span class="category">Наука</span></li>
+          </ul>
+
+          <!-- Bootstrap Grid: 1 столбец на телефоне, 2 на планшете, 3 на компьютере. -->
+          <div class="video-grid row row-cols-1 row-cols-md-2 row-cols-lg-3">
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/mountains.jpg" alt="Снежные горные вершины в облаках" width="960" height="540"><span class="video-label">ПУТЕШЕСТВИЯ</span><div class="thumbnail-copy"><span>Выше облаков</span><small>Там, где хочется остаться</small></div><span class="duration">18:42</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-green" aria-hidden="true">N</span><div class="video-text"><h2>Три дня в горах: путешествие выше облаков</h2><p class="channel-name">North Studio <span class="verified" aria-label="Подтверждённый канал"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span></p><p class="video-stats">128 тыс. просмотров <span>·</span> 2 дня назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/desk.jpg" alt="Минималистичное рабочее место с ноутбуком" width="960" height="540"><span class="video-label">ТЕХНОЛОГИИ</span><div class="thumbnail-copy"><span>Меньше вещей.<br>Больше идей.</span></div><span class="duration">12:08</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-blue" aria-hidden="true">T</span><div class="video-text"><h2>Мой рабочий стол — ничего лишнего</h2><p class="channel-name">Tech Talk <span class="verified" aria-label="Подтверждённый канал"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span></p><p class="video-stats">86 тыс. просмотров <span>·</span> 1 день назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/city.jpg" alt="Ночной город с освещёнными небоскрёбами" width="960" height="540"><span class="video-label">ГОРОДСКИЕ ИСТОРИИ</span><div class="thumbnail-copy"><span>Пока город спит</span><small>Ночная прогулка без маршрута</small></div><span class="duration">24:16</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-purple" aria-hidden="true">U</span><div class="video-text"><h2>Город после полуночи: другая сторона улиц</h2><p class="channel-name">Urban Stories</p><p class="video-stats">204 тыс. просмотров <span>·</span> 3 дня назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/music.jpg" alt="Гитары и клавишные в музыкальной студии" width="960" height="540" loading="lazy"><span class="video-label">МУЗЫКА</span><div class="thumbnail-copy"><span>Хороший звук.<br>Хороший день.</span></div><span class="duration">32:05</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-orange" aria-hidden="true">S</span><div class="video-text"><h2>Живая студийная сессия для твоего вечера</h2><p class="channel-name">Sound Room <span class="verified" aria-label="Подтверждённый канал"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span></p><p class="video-stats">312 тыс. просмотров <span>·</span> 5 дней назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/camera.jpg" alt="Фотоаппарат с большим объективом" width="960" height="540" loading="lazy"><span class="video-label">ТВОРЧЕСТВО</span><div class="thumbnail-copy"><span>Поймать момент</span><small>История начинается с одного кадра</small></div><span class="duration">15:37</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-rose" aria-hidden="true">F</span><div class="video-text"><h2>Как видеть кадр: 7 идей для красивых снимков</h2><p class="channel-name">Frame by Frame</p><p class="video-stats">57 тыс. просмотров <span>·</span> 2 дня назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/forest.jpg" alt="Солнечные лучи в густом зелёном лесу" width="960" height="540" loading="lazy"><span class="video-label">ПРИРОДА</span><div class="thumbnail-copy"><span>Просто выдохни</span><small>Звуки леса и ничего больше</small></div><span class="duration">45:00</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-green" aria-hidden="true">W</span><div class="video-text"><h2>45 минут тишины: утро в глубине леса</h2><p class="channel-name">Wild & Free</p><p class="video-stats">189 тыс. просмотров <span>·</span> 1 неделю назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/coffee.jpg" alt="Чашка кофе и кофейные зёрна на столе" width="960" height="540" loading="lazy"><span class="video-label">ОБРАЗ ЖИЗНИ</span><div class="thumbnail-copy"><span>Утро без спешки</span><small>Маленькие ритуалы большого дня</small></div><span class="duration">09:24</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-tan" aria-hidden="true">D</span><div class="video-text"><h2>Кофе, книга и медленное утро дома</h2><p class="channel-name">Daily Notes</p><p class="video-stats">73 тыс. просмотров <span>·</span> 4 дня назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/ocean.jpg" alt="Океанские волны у берега в солнечном свете" width="960" height="540" loading="lazy"><span class="video-label">ПУТЕШЕСТВИЯ</span><div class="thumbnail-copy"><span>На одной волне</span><small>Побережье, которое не отпускает</small></div><span class="duration">21:53</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-blue" aria-hidden="true">B</span><div class="video-text"><h2>Поближе к океану: неделя на побережье</h2><p class="channel-name">Blue Horizon</p><p class="video-stats">146 тыс. просмотров <span>·</span> 6 дней назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/food.jpg" alt="Свежий салат с овощами и зеленью" width="960" height="540" loading="lazy"><span class="video-label">ЕДА</span><div class="thumbnail-copy"><span>Просто вкусно</span><small>Свежие идеи на каждый день</small></div><span class="duration">11:46</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-orange" aria-hidden="true">K</span><div class="video-text"><h2>Обед за 15 минут: три любимых рецепта</h2><p class="channel-name">Kitchen Stories</p><p class="video-stats">98 тыс. просмотров <span>·</span> 3 дня назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/space.jpg" alt="Земля из космоса и голубой край атмосферы" width="960" height="540" loading="lazy"><span class="video-label">НАУКА</span><div class="thumbnail-copy"><span>Чуть ближе<br>к бесконечности</span></div><span class="duration">16:32</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-purple" aria-hidden="true">O</span><div class="video-text"><h2>Что видно из космоса? Наша планета с орбиты</h2><p class="channel-name">Orbit <span class="verified" aria-label="Подтверждённый канал"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span></p><p class="video-stats">421 тыс. просмотров <span>·</span> 1 неделю назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/architecture.jpg" alt="Современная архитектура с геометричными фасадами" width="960" height="540" loading="lazy"><span class="video-label">ДИЗАЙН</span><div class="thumbnail-copy"><span>Красота простых форм</span><small>Архитектура вокруг нас</small></div><span class="duration">14:09</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-rose" aria-hidden="true">L</span><div class="video-text"><h2>Почему минимализм в архитектуре работает</h2><p class="channel-name">Lines & Spaces</p><p class="video-stats">62 тыс. просмотров <span>·</span> 5 дней назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+            <div class="col"><article class="video-card">
+              <div class="video-thumbnail"><img src="assets/images/road.jpg" alt="Горные хребты в тёплом свете закатного солнца" width="960" height="540" loading="lazy"><span class="video-label">ВЛОГ</span><div class="thumbnail-copy"><span>Куда ведёт дорога</span><small>Лучший план — иногда без плана</small></div><span class="duration">27:18</span></div>
+              <div class="video-details"><span class="channel-avatar avatar-green" aria-hidden="true">N</span><div class="video-text"><h2>Поездка без плана: только мы и дорога</h2><p class="channel-name">North Studio <span class="verified" aria-label="Подтверждённый канал"><svg class="icon" aria-hidden="true"><use href="#icon-check"/></svg></span></p><p class="video-stats">115 тыс. просмотров <span>·</span> 2 недели назад</p></div><span class="card-more" aria-hidden="true">⋮</span></div>
+            </article></div>
+          </div>
+        </section>
+
+        <footer class="main-footer d-flex justify-content-between"><span>Открывай новое. Каждый день.</span><span>Crystal Play kz © 2026</span></footer>
+      </main>
+    </div>
+  </body>
+</html>
