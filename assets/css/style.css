@@ -1,6 +1,6 @@
 /* 1. Общая тема. Bootstrap подключается раньше этого файла. */
 :root {
-  --accent: #e63535;
+  --accent: #28109f;
   --ink: #202126;
   --muted: #737780;
   --line: #e9e9ed;
@@ -17,28 +17,25 @@ button:disabled { opacity: 1; cursor: default; }
 a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-radius: 5px; }
 
 /* 2. Шапка: Flexbox. Навигация видна без меню и JavaScript. */
-.site-header { border-bottom: 1px solid var(--line); background: #fff; }
-.header-inner { display: flex; align-items: center; gap: 30px; min-height: 88px; max-width: 1920px; padding: 0 36px; margin: auto; }
+.site-header { display: flex; align-items: center; border-bottom: 1px solid var(--line); background: #fff; }
+.header-inner { display: flex; align-items: center; justify-content: center; gap: 30px; min-height: 88px; max-width: 1920px; padding: 0 36px; margin: auto; }
 .brand { display: flex; align-items: center; gap: 9px; min-width: var(--sidebar-width); flex-shrink: 0; white-space: nowrap; font-size: 26px; font-weight: 750; letter-spacing: -1.1px; }
-.brand-mark { display: grid; place-items: center; width: 39px; height: 29px; background: var(--accent); border-radius: 9px; color: #fff; }
-.brand-mark .icon { width: 20px; height: 20px; fill: currentColor; stroke: none; margin-left: -2px; }
-.brand-light { font-weight: 450; }
-.brand sup { font-size: 9px; letter-spacing: .4px; color: var(--muted); margin-left: 4px; top: -1.1em; }
+.logo { display: block; width: 256px; height: 64px; object-fit: contain; }
 .search-form { display: flex; flex: 1; min-width: 170px; max-width: 420px; border: 1px solid #e1e1e6; border-radius: 24px; overflow: hidden; }
 .search-form .form-control { min-width: 0; padding: 11px 18px; border: 0; font-size: 13px; border-radius: 0; background: #fafafa; }
 .search-form .form-control::placeholder { color: #85868e; opacity: 1; }
 .search-button { display: grid; place-items: center; width: 51px; flex-shrink: 0; border: 0; border-left: 1px solid #e1e1e6; background: var(--surface); color: #555861; }
 .search-button .icon { width: 19px; height: 19px; }
-.main-nav { margin-left: auto; }
+.main-nav { margin-left: 0; }
 .main-nav ul { display: flex; gap: 24px; }
 .nav-item { display: flex; align-items: center; gap: 7px; white-space: nowrap; font-size: 13px; font-weight: 600; color: #656771; }
 .nav-item .icon { width: 19px; height: 19px; }
 .nav-item.is-current { color: var(--accent); }
-.header-actions { gap: 17px; margin-left: 8px; }
+.header-actions { gap: 17px; margin-left: 0; }
 .icon-button { display: grid; place-items: center; width: 32px; height: 36px; border: 0; background: none; color: #555861; }
 .notification-button { position: relative; }
 .notification-dot { position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; border: 1px solid #fff; border-radius: 50%; background: var(--accent); }
-.profile-avatar { width: 36px; height: 36px; border: 3px solid #fff; outline: 1px solid #eadbd4; border-radius: 50%; background: #ecd7c9; color: #7f5644; font-weight: 700; }
+.profile-avatar { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border: 3px solid #fff; outline: 1px solid #eadbd4; border-radius: 50%; background: #ecd7c9; color: #7f5644; font-weight: 700; }
 
 /* 3. Основная композиция: CSS Grid для колонки Shorts и ленты. */
 .page-layout { display: grid; grid-template-columns: var(--sidebar-width) minmax(0, 1fr); gap: 36px; max-width: 1920px; padding: 30px 36px 0; }
@@ -50,6 +47,8 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
 .shorts-list { display: grid; gap: 22px; }
 .short-card { position: relative; isolation: isolate; aspect-ratio: 9 / 16; border-radius: 13px; overflow: hidden; color: white; background: #1a302c; }
 .short-card > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; }
+.short-card:first-child > img { object-position: 75% center; }
+.short-card:last-child > img { object-position: 70% center; }
 .short-card::after { position: absolute; inset: 0; z-index: -1; content: ""; background: linear-gradient(180deg, rgba(0,0,0,.18), transparent 30%, rgba(0,0,0,.12) 55%, rgba(0,0,0,.85)); }
 .short-duration { position: absolute; top: 13px; right: 13px; padding: 3px 7px; border-radius: 5px; background: rgba(0,0,0,.48); font-size: 10px; font-weight: 600; }
 .short-actions { position: absolute; right: 12px; bottom: 145px; display: grid; gap: 18px; text-align: center; text-shadow: 0 1px 6px rgba(0,0,0,.7); }
@@ -73,27 +72,17 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
 h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spacing: -1px; }
 .title-dot { color: var(--accent); }
 .feed-label { display: flex; align-items: center; gap: 7px; font-size: 11px; color: var(--muted); white-space: nowrap; }
-.feed-label > span { width: 6px; height: 6px; border-radius: 50%; background: #7a9c7b; }
+.feed-label > span { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
 .category-list { display: flex; flex-wrap: wrap; gap: 9px; margin-bottom: 27px; }
 .category { display: block; padding: 8px 15px; background: var(--surface); border: 1px solid #ededf0; border-radius: 7px; font-size: 12px; font-weight: 500; white-space: nowrap; }
-.category.is-selected { color: white; border-color: var(--ink); background: var(--ink); }
+.category.is-selected { color: white; border-color: var(--accent); background: var(--accent); }
 .video-grid { --bs-gutter-x: 28px; --bs-gutter-y: 30px; }
+.video-link { display: block; }
 .video-thumbnail { position: relative; isolation: isolate; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 11px; background: #e9e9ed; }
 .video-thumbnail > img { width: 100%; height: 100%; object-fit: cover; }
-.video-thumbnail::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0,0,0,.25), transparent 35%, rgba(0,0,0,.5)); }
-.video-label { position: absolute; top: 14px; left: 15px; z-index: 2; color: white; font-size: 8px; font-weight: 650; letter-spacing: 1.7px; text-shadow: 0 1px 6px #000; }
-.thumbnail-copy { position: absolute; left: 20px; right: 16px; bottom: 25px; z-index: 2; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,.45); }
-.thumbnail-copy > span { display: block; font-size: clamp(20px, 1.65vw, 31px); line-height: 1.08; letter-spacing: -.7px; font-weight: 700; max-width: 95%; }
-.thumbnail-copy small { display: block; margin-top: 7px; font-size: 10px; letter-spacing: .3px; }
 .duration { position: absolute; z-index: 3; right: 9px; bottom: 9px; padding: 2px 5px; background: rgba(15,16,19,.86); border-radius: 4px; color: #fff; font-size: 10px; font-weight: 600; }
 .video-details { display: flex; gap: 11px; padding: 14px 2px 0; align-items: flex-start; }
-.channel-avatar { display: grid; flex-shrink: 0; place-items: center; width: 36px; height: 36px; border-radius: 50%; font-size: 13px; font-weight: 650; }
-.avatar-green { color: #3f6358; background: #e0e9e2; }
-.avatar-blue { color: #476582; background: #e2e9f1; }
-.avatar-purple { color: #766087; background: #ece4f2; }
-.avatar-orange { color: #b16f3f; background: #f5e6d5; }
-.avatar-rose { color: #9f6170; background: #f4e0e5; }
-.avatar-tan { color: #8b7357; background: #ede6db; }
+.channel-avatar { display: grid; flex-shrink: 0; place-items: center; width: 36px; height: 36px; border-radius: 50%; font-size: 13px; font-weight: 650; color: var(--accent); background: #e5d9ff; }
 .video-text { min-width: 0; flex: 1; }
 .video-text h2 { margin: 0 0 6px; min-height: 38px; font-size: 13px; line-height: 1.45; font-weight: 650; }
 .channel-name { display: flex; align-items: center; gap: 5px; margin: 0 0 2px; color: #666a73; font-size: 11px; line-height: 1.45; }
@@ -116,7 +105,6 @@ h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spac
   .page-layout { gap: 26px; padding-left: 26px; padding-right: 26px; }
   .short-content h3 { font-size: 20px; }
   .video-grid { --bs-gutter-x: 22px; }
-  .thumbnail-copy { left: 16px; bottom: 23px; }
 }
 
 @media (max-width: 1199.98px) {
@@ -140,13 +128,13 @@ h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spac
   .short-actions { right: 10px; bottom: 140px; gap: 14px; }
   .eyebrow { font-size: 8px; letter-spacing: 1.2px; }
   .category { padding: 7px 11px; font-size: 11px; }
-  .thumbnail-copy > span { font-size: 23px; }
 }
 
 /* 7. Телефон: лента первая, Shorts ниже; все разделы навигации остаются видимы. */
 @media (max-width: 767.98px) {
   .header-inner { padding: 16px 20px 0; gap: 16px; }
   .brand { min-width: 0; font-size: 22px; }
+  .logo { width: 180px; height: 45px; }
   .header-actions { gap: 8px; }
   .search-form { order: 3; flex-basis: 100%; }
   .main-nav ul { justify-content: space-between; gap: 10px; padding-bottom: 16px; }
@@ -161,10 +149,6 @@ h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spac
   .category { font-size: 11px; padding: 7px 12px; }
   .video-grid { --bs-gutter-y: 27px; }
   .video-thumbnail { border-radius: 10px; }
-  .thumbnail-copy { left: 22px; bottom: 28px; }
-  .thumbnail-copy > span { font-size: clamp(26px, 7vw, 40px); }
-  .video-label { top: 17px; left: 22px; font-size: 9px; }
-  .thumbnail-copy small { font-size: 11px; }
   .duration { font-size: 11px; }
   .channel-avatar { width: 37px; height: 37px; font-size: 13px; }
   .video-details { gap: 11px; padding-top: 13px; }
@@ -197,6 +181,7 @@ h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spac
   .header-inner { padding-left: 14px; padding-right: 14px; }
   .page-layout { padding-left: 14px; padding-right: 14px; }
   .brand { font-size: 20px; }
+  .logo { width: 160px; height: 40px; }
   .header-actions .notification-button { display: none; }
   .shorts-list { grid-template-columns: minmax(0, 1fr); max-width: 240px; margin: auto; }
   .short-content h3 { font-size: 20px; }

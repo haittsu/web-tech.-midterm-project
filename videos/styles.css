@@ -41,7 +41,7 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
 .icon-button { display: grid; place-items: center; width: 32px; height: 36px; border: 0; background: none; color: #555861; }
 .notification-button { position: relative; }
 .notification-dot { position: absolute; top: 6px; right: 6px; width: 6px; height: 6px; border: 1px solid #fff; border-radius: 50%; background: var(--accent); }
-.profile-avatar { width: 36px; height: 36px; border: 3px solid #fff; outline: 1px solid #eadbd4; border-radius: 50%; background: #ecd7c9; color: #7f5644; font-weight: 700; }
+.profile-avatar { display: grid; place-items: center; flex-shrink: 0; width: 36px; height: 36px; border: 3px solid #fff; outline: 1px solid #eadbd4; border-radius: 50%; background: #ecd7c9; color: #7f5644; font-weight: 700; }
 
 .row{
     margin-top: 15px;
