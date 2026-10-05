@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crystal Play Studio — аналитика канала.">
+    <title>Crystal Play kz — Studio Analytics</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+  </head>
+  <body class="studio-page">
+    <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></symbol>
+        <symbol id="icon-trending" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-10M15 5h6v6"/></symbol>
+        <symbol id="icon-subscriptions" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="3"/><path d="M6 5h12M9 2h6m-5 10 5 3-5 3Z"/></symbol>
+        <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
+        <symbol id="icon-messenger" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 10 10 0 0 1-4-.9L3 21l1.4-4.7A9 9 0 1 1 21 11.5Z"/><path d="m7 13 4-4 2 3 4-3"/></symbol>
+        <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+        <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 5-6"/></symbol>
+        <symbol id="icon-video" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3Z"/></symbol>
+        <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6m2 3a4 4 0 0 1 3 3.9"/></symbol>
+        <symbol id="icon-comment" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 10 10 0 0 1-4-.9L3 21l1.4-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 11.5h.1m3.9 0h.1m3.9 0h.1"/></symbol>
+        <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+      </defs>
+    </svg>
+
+    <header class="site-header" id="top">
+      <div class="header-inner container-fluid">
+        <a class="brand" href="../index.html" aria-label="CrysPlay, главная"><img src="../assets/general/logo.png" alt="CrysPlay" class="logo"></a>
+        <form class="search-form" role="search" aria-label="Поиск видео">
+          <label class="visually-hidden" for="video-search">Поиск видео</label>
+          <input class="form-control" id="video-search" type="search" placeholder="Найти что-то интересное..." disabled>
+          <button type="button" class="search-button" aria-label="Найти видео" disabled><svg class="icon"><use href="#icon-search"/></svg></button>
+        </form>
+        <nav class="main-nav" aria-label="Главная навигация">
+          <ul class="list-unstyled mb-0">
+            <li><a href="../index.html" class="nav-item"><svg class="icon"><use href="#icon-home"/></svg><span>Main</span></a></li>
+            <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-trending"/></svg><span>Trends</span></span></li>
+            <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-subscriptions"/></svg><span>Channels</span></span></li>
+            <li><a href="index.html" class="nav-item is-current" aria-current="page"><svg class="icon"><use href="#icon-chart"/></svg><span>Studio</span></a></li>
+          </ul>
+        </nav>
+        <div class="header-actions d-flex align-items-center">
+          <button class="icon-button messenger-button" type="button" aria-label="Сообщения" disabled><svg class="icon"><use href="#icon-messenger"/></svg></button>
+          <button class="icon-button notification-button" type="button" aria-label="Уведомления" disabled><svg class="icon"><use href="#icon-bell"/></svg><span class="notification-dot"></span></button>
+          <a class="profile-avatar" href="../login/index.html" aria-label="Войти в аккаунт">А</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="page-layout container-fluid studio-layout">
+      <aside class="sidebar studio-sidebar" aria-label="Разделы Studio">
+        <div class="studio-channel"><span class="studio-avatar">C</span><div><strong>Crystal Play kz</strong><span>@crystalplaykz</span></div></div>
+        <p class="studio-menu-label">Панель управления</p>
+        <nav><ul class="studio-menu list-unstyled">
+          <li><a class="is-active" href="#analytics"><svg class="icon"><use href="#icon-chart"/></svg>Аналитика</a></li>
+          <li><a href="#content"><svg class="icon"><use href="#icon-video"/></svg>Контент</a></li>
+          <li><a href="#audience"><svg class="icon"><use href="#icon-users"/></svg>Аудитория</a></li>
+          <li><a href="#comments"><svg class="icon"><use href="#icon-comment"/></svg>Комментарии</a></li>
+        </ul></nav>
+        <div class="studio-tip"><span>Совет дня</span><p>Ваши видео о футболе собирают больше всего новых зрителей.</p></div>
+      </aside>
+
+      <main class="main-content studio-content" id="analytics">
+        <div class="section-heading studio-heading"><div><p class="eyebrow">CRYSTAL PLAY STUDIO</p><h1>Аналитика канала<span class="title-dot">.</span></h1></div><span class="studio-period">Последние 28 дней <strong>⌄</strong></span></div>
+
+        <section class="studio-overview" aria-label="Основные показатели">
+          <article class="metric-card"><span class="metric-label">Просмотры</span><strong>428,6 тыс.</strong><p class="positive">↑ 18,4% <span>к прошлому периоду</span></p></article>
+          <article class="metric-card"><span class="metric-label">Время просмотра</span><strong>12 904 ч</strong><p class="positive">↑ 9,2% <span>к прошлому периоду</span></p></article>
+          <article class="metric-card"><span class="metric-label">Подписчики</span><strong>+1 284</strong><p class="positive">↑ 24,7% <span>к прошлому периоду</span></p></article>
+        </section>
+
+        <section class="analytics-card" aria-labelledby="views-heading">
+          <div class="analytics-card-header"><div><h2 id="views-heading">Динамика просмотров</h2><p>428 620 просмотров за выбранный период</p></div><span class="chart-total">+18,4%</span></div>
+          <div class="mini-chart" role="img" aria-label="График роста просмотров с 8 до 56 тысяч в день за 28 дней">
+            <div class="chart-grid"></div>
+            <svg viewBox="0 0 720 170" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#28109f" stop-opacity=".22"/><stop offset="100%" stop-color="#28109f" stop-opacity="0"/></linearGradient></defs><path class="chart-area" d="M0,139 L52,128 L104,132 L156,102 L208,112 L260,82 L312,96 L364,64 L416,78 L468,54 L520,68 L572,35 L624,50 L676,20 L720,31 L720,170 L0,170 Z"/><path class="chart-line" d="M0,139 L52,128 L104,132 L156,102 L208,112 L260,82 L312,96 L364,64 L416,78 L468,54 L520,68 L572,35 L624,50 L676,20 L720,31"/></svg>
+            <div class="chart-axis"><span>8 сен</span><span>15 сен</span><span>22 сен</span><span>29 сен</span><span>5 окт</span></div>
+          </div>
+        </section>
+
+        <section class="content-table-section" id="content" aria-labelledby="content-heading">
+          <div class="analytics-card-header"><div><h2 id="content-heading">Эффективность контента</h2><p>Последние опубликованные видео</p></div><a class="table-link" href="#content">Все видео <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
+          <div class="table-responsive">
+            <table class="table studio-table align-middle mb-0">
+              <caption class="visually-hidden">Показатели последних опубликованных видео</caption>
+              <thead><tr><th scope="col">Видео</th><th scope="col" class="text-end">Просмотры</th><th scope="col" class="text-end">CTR</th><th scope="col" class="text-end">Ср. просмотр</th><th scope="col" class="text-end">Подписчики</th></tr></thead>
+              <tbody>
+                <tr><td><div class="table-video"><img src="../assets/images/messi-barcelona.jpg" alt=""><div><strong>Месси в «Барселоне»: лучшие моменты</strong><span>Опубликовано 2 дня назад</span></div></div></td><td class="text-end">128,4 тыс.</td><td class="text-end">8,6%</td><td class="text-end">6:48</td><td class="text-end positive-number">+486</td></tr>
+                <tr><td><div class="table-video"><img src="../assets/images/vid1.png" alt=""><div><strong>COSTA RICA IN 4K 60fps HDR</strong><span>Опубликовано 5 дней назад</span></div></div></td><td class="text-end">31,2 тыс.</td><td class="text-end">6,9%</td><td class="text-end">5:22</td><td class="text-end positive-number">+112</td></tr>
+                <tr><td><div class="table-video"><img src="../assets/images/messi-argentina.jpg" alt=""><div><strong>Лионель Месси: путь к чемпионству</strong><span>Опубликовано 1 неделю назад</span></div></div></td><td class="text-end">204,1 тыс.</td><td class="text-end">9,4%</td><td class="text-end">7:15</td><td class="text-end positive-number">+578</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <footer class="main-footer d-flex justify-content-between"><span>Данные обновлены сегодня, 10:30</span><span>Crystal Play Studio © 2026</span></footer>
+      </main>
+    </div>
+  </body>
+</html>

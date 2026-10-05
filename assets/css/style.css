@@ -189,3 +189,72 @@ h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spac
   .nav-item .icon { width: 14px; height: 14px; }
   h1 { font-size: 25px; }
 }
+
+/* 8. Studio Analytics. Все правила ограничены .studio-page и не меняют ленту. */
+.studio-page { background: #fbfbfc; }
+.studio-page .site-header { background: #fff; }
+.studio-layout { align-items: start; }
+.studio-sidebar { padding: 4px 2px; }
+.studio-channel { display: flex; align-items: center; gap: 11px; padding: 12px 10px 21px; border-bottom: 1px solid var(--line); }
+.studio-avatar { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 16px; }
+.studio-channel strong, .studio-channel span:not(.studio-avatar) { display: block; }
+.studio-channel strong { font-size: 13px; }
+.studio-channel div span { margin-top: 2px; color: var(--muted); font-size: 10px; }
+.studio-menu-label { margin: 23px 10px 9px; color: #93959c; font-size: 9px; font-weight: 700; letter-spacing: 1.1px; text-transform: uppercase; }
+.studio-menu { display: grid; gap: 4px; margin: 0; }
+.studio-menu a { display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 7px; color: #686a73; font-size: 12px; font-weight: 600; }
+.studio-menu a .icon { width: 18px; height: 18px; }
+.studio-menu a.is-active { background: #eeeafd; color: var(--accent); }
+.studio-tip { margin-top: 30px; padding: 15px 13px; border: 1px solid #e5e0f8; border-radius: 10px; background: #f8f6ff; }
+.studio-tip span { color: var(--accent); font-size: 10px; font-weight: 700; }
+.studio-tip p { margin: 7px 0 0; color: #686a73; font-size: 11px; line-height: 1.55; }
+.studio-heading { margin-bottom: 25px; }
+.studio-period { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 7px; background: #fff; color: #5e6069; font-size: 11px; }
+.studio-period strong { color: var(--accent); font-size: 14px; }
+.studio-overview { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-bottom: 20px; }
+.metric-card, .analytics-card, .content-table-section { border: 1px solid var(--line); border-radius: 11px; background: #fff; }
+.metric-card { padding: 21px; }
+.metric-label { display: block; margin-bottom: 9px; color: var(--muted); font-size: 11px; }
+.metric-card strong { display: block; margin-bottom: 10px; font-size: 23px; letter-spacing: -.7px; }
+.metric-card p { margin: 0; color: #20844e; font-size: 10px; font-weight: 700; }
+.metric-card p span { color: var(--muted); font-weight: 400; }
+.analytics-card { padding: 22px 23px 18px; margin-bottom: 20px; }
+.analytics-card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.analytics-card-header h2 { margin: 0 0 5px; font-size: 16px; font-weight: 700; letter-spacing: -.3px; }
+.analytics-card-header p { margin: 0; color: var(--muted); font-size: 11px; }
+.chart-total { color: #20844e; font-size: 12px; font-weight: 700; }
+.mini-chart { position: relative; height: 210px; margin-top: 24px; padding-bottom: 25px; }
+.chart-grid { position: absolute; inset: 0 0 25px; background: repeating-linear-gradient(to bottom, transparent 0, transparent 41px, #f0f0f2 42px); }
+.mini-chart svg { position: absolute; inset: 0 0 25px; width: 100%; height: calc(100% - 25px); overflow: visible; }
+.chart-area { fill: url(#chart-fill); }
+.chart-line { fill: none; stroke: var(--accent); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
+.chart-axis { position: absolute; right: 0; bottom: 0; left: 0; display: flex; justify-content: space-between; color: #9698a0; font-size: 9px; }
+.content-table-section { padding: 22px 23px 0; overflow: hidden; }
+.table-link { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); font-size: 11px; font-weight: 650; white-space: nowrap; }
+.table-link .icon { width: 15px; height: 15px; }
+.studio-table { margin-top: 18px; color: #484a52; font-size: 11px; }
+.studio-table th { padding: 12px 10px; border-bottom-color: var(--line); color: #92949b; font-size: 9px; font-weight: 700; letter-spacing: .7px; text-transform: uppercase; white-space: nowrap; }
+.studio-table td { padding: 13px 10px; border-color: #efeff2; white-space: nowrap; }
+.studio-table th:first-child, .studio-table td:first-child { padding-left: 0; }
+.studio-table th:last-child, .studio-table td:last-child { padding-right: 0; }
+.table-video { display: flex; align-items: center; gap: 10px; min-width: 260px; }
+.table-video img { width: 66px; height: 37px; border-radius: 5px; object-fit: cover; }
+.table-video strong, .table-video span { display: block; }
+.table-video strong { max-width: 260px; overflow: hidden; font-size: 11px; text-overflow: ellipsis; }
+.table-video span { margin-top: 4px; color: var(--muted); font-size: 9px; }
+.positive-number { color: #20844e; font-weight: 700; }
+
+@media (max-width: 991.98px) {
+  .studio-overview { gap: 10px; }
+  .metric-card { padding: 16px; }
+  .metric-card strong { font-size: 20px; }
+}
+
+@media (max-width: 767.98px) {
+  .studio-sidebar { grid-row: 2; }
+  .studio-overview { grid-template-columns: 1fr; }
+  .studio-heading { align-items: flex-start; }
+  .analytics-card, .content-table-section { padding-right: 16px; padding-left: 16px; }
+  .mini-chart { height: 180px; }
+  .studio-tip { display: none; }
+}
