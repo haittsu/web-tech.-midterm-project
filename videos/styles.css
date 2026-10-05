@@ -51,8 +51,9 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 2000px;
-    gap:15px
+    height: auto;
+    gap:15px;
+    padding: 15px;
 }
 
 .logo{
@@ -185,7 +186,7 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     flex-direction: column;
     align-items: center;
     gap:15px;
-    
+    padding: 15;
 }
 
 .video {
@@ -287,11 +288,76 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     line-height: 1.6;
 }
 
+.video-info > h3 {
+    margin: 28px 0 14px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.comment {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.comment .profile-avatar {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+}
+
+#usercomment {
+    width: 100%;
+    min-height: 76px;
+    padding: 11px 13px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    outline: none;
+    color: var(--ink);
+    background: #fafafa;
+    font-size: 13px;
+    line-height: 1.45;
+    resize: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+#usercomment:focus {
+    border-color: rgba(40, 16, 159, .45);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(40, 16, 159, .1);
+}
+
+.button-send {
+    display: grid;
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    place-items: center;
+    margin-top: 38px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    color: #fff;
+    background: var(--accent);
+    font-size: 14px;
+    transition: background .2s ease, transform .2s ease;
+}
+
+.button-send:hover,
+.button-send:focus {
+    background: #1d0b78;
+}
+
+
 .feed-column {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
+    padding: 15px;
 }
 
 .feed-video-card {
@@ -376,6 +442,49 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
 }
 
 @media (max-width: 767px) {
+    .video-page {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .video-page > .video-column,
+    .video-page > .feed-column,
+    .video-page > .shorts-column {
+        width: 100%;
+        max-width: none;
+    }
+
+    .video-column {
+        grid-row: 1;
+    }
+
+    .feed-column {
+        grid-row: 2;
+        align-items: stretch;
+        padding: 0 12px;
+    }
+
+    .feed-video-card {
+        width: min(100%, 520px);
+        margin: 0 auto;
+    }
+
+    .shorts-column {
+        grid-row: 3;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+        gap: 14px;
+        padding: 15px 12px;
+    }
+
+    .short-card {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 16;
+    }
+
     .video-actions {
         align-items: flex-start;
         flex-direction: column;
@@ -384,5 +493,25 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     .video-info {
         padding-right: 12px;
         padding-left: 12px;
+    }
+}
+
+@media (max-width: 575px) {
+    .shorts-column {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 359px) {
+    .shorts-column {
+        grid-template-columns: minmax(0, 1fr);
+        max-width: 264px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .short-card {
+        width: 240px;
+        justify-self: center;
     }
 }
