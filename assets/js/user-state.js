@@ -13,6 +13,11 @@
 
     function renderUser() {
         const user = getUser();
+        const loginUrl = document.documentElement.dataset.loginUrl;
+        if (!user && loginUrl) {
+            window.location.replace(loginUrl);
+            return;
+        }
         const name = user ? user.name : 'Guest';
         const initial = Array.from(name)[0].toLocaleUpperCase();
         document.querySelectorAll('.profile-avatar, [data-user-avatar]').forEach(avatar => {
@@ -29,22 +34,10 @@
     }
 
     function signIn(email) {
-        const address = email.trim();
-        const name = address.split('@')[0];
-        const accountId = address.toLowerCase();
+        const name = email.trim().split('@')[0];
         if (!name) return false;
         try {
-            let previousUser = null;
-            try {
-                previousUser = JSON.parse(localStorage.getItem(storageKey));
-            } catch {
-                // An unreadable profile cannot own the existing video activity.
-            }
-            if (!previousUser || previousUser.accountId !== accountId) {
-                localStorage.removeItem('crysplay:video-1');
-            }
-            // Keep the full address as the account identifier, never the password.
-            localStorage.setItem(storageKey, JSON.stringify({ name, accountId }));
+            localStorage.setItem(storageKey, JSON.stringify({ name }));
             renderUser();
             return true;
         } catch {
