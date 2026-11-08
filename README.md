@@ -1,14 +1,52 @@
-mx tole abil
+# CrysPlay
 
-## Мессенджер
+CrysPlay is a responsive front-end prototype of a video-sharing platform. It includes a recommendation feed, short-video cards, video playback, messaging, sign-in, and a creator analytics dashboard.
 
-Страница `messenger/index.html` использует общий логотип, favicon, фиолетовую палитру и шапку главной страницы. Открывается через значок сообщений в шапке главной и страницы видео.
+## Features
 
-- Три демонстрационных чата с небольшими историями сообщений.
-- Переключение чатов, отправка текста кнопкой или Enter; Shift + Enter добавляет новую строку.
-- Сообщения сохраняются в `localStorage` этого браузера. Серверной отправки и связи с реальными людьми нет.
-- Пустые сообщения не отправляются; текст ограничен 2000 символами и выводится через `textContent`.
-- Звонки и видеозвонки отключены. Ссылки на главную и страницу входа работают.
-- CSS Grid задаёт две колонки на компьютере; на телефоне список контактов расположен над перепиской. Используются общие стили Bootstrap, семантический HTML, форма ввода и доступные подписи.
+- Responsive video feed with categories and recommendations
+- Shorts section with engagement statistics
+- Video player page with channel details, likes, comments, and related videos
+- Messenger interface with interactive chat behavior
+- Sign-in page with email and social login options
+- Creator Studio dashboard with channel metrics and content analytics
 
-Логика находится в `messenger/messenger.js`, стили страницы — в `messenger/styles.css`. JavaScript подключается только на странице мессенджера; главная остаётся без JavaScript.
+## Technologies
+
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap 5
+- Bootstrap Icons
+
+## Project Structure
+
+```text
+.
+|-- index.html              # Main video feed
+|-- assets/                 # Images, icons, shared styles, and Bootstrap files
+|-- login/                  # Sign-in page
+|-- messenger/              # Messaging interface and JavaScript
+|-- studio/                 # Creator analytics dashboard
+`-- videos/                 # Video player page and media files
+```
+
+## Getting Started
+
+No build step or package installation is required.
+
+1. Clone or download the repository.
+2. Open `index.html` in a modern web browser.
+
+For the most reliable experience, serve the project with a local development server. For example, if Python is installed:
+
+```bash
+python -m http.server 8000
+```
+
+Then visit `http://localhost:8000` in your browser.
+
+## Notes
+
+- This project is a front-end demonstration; authentication, search, notifications, and most content actions are not connected to a backend.
+- Some pages load Bootstrap and Bootstrap Icons from a CDN, so an internet connection may be required for all styles and icons to appear correctly.
