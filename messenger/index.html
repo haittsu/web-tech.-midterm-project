@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="../assets/js/app-data.js" defer></script>
     <script src="messenger.js" defer></script>
   </head>
   <body class="messenger-page">
@@ -41,8 +42,8 @@
                 </a>
                 <form class="search-form" role="search" aria-label="Search Video">
                 <label class="visually-hidden" for="video-search">Search Video</label>
-                <input class="form-control" id="video-search" type="search" placeholder="Find Something intresting..." disabled>
-                <button type="button" class="search-button" aria-label="Find videos" disabled>
+                <input class="form-control" id="video-search" type="search" placeholder="Найти видео или канал…" maxlength="200">
+                <button type="submit" class="search-button" aria-label="Найти видео">
                     <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
                 </button>
                 </form>

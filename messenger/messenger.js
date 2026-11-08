@@ -1,32 +1,10 @@
 "use strict";
 
-// Только демонстрационная переписка в этом браузере. Запросов на сервер нет.
-const storageKey = "crysplay.messenger.messages.v1";
-const contacts = {
-  aliya: { name: "Алия", initial: "А", status: "В сети", online: true },
-  daniyar: { name: "Данияр", initial: "Д", status: "Был недавно", online: false },
-  marat: { name: "Марат", initial: "М", status: "Был недавно", online: false }
-};
-const initialMessages = {
-  aliya: [
-    { sender: "them", text: "Привет! Видел подборку с Месси?", time: "16:42" },
-    { sender: "me", text: "Привет, только что посмотрел. Очень круто!", time: "16:44" },
-    { sender: "them", text: "Да! Особенно момент после гола.", time: "16:45" }
-  ],
-  daniyar: [
-    { sender: "them", text: "Что сейчас смотришь?", time: "15:18" },
-    { sender: "me", text: "Коста-Рику в 4K. Красиво снято.", time: "15:19" },
-    { sender: "them", text: "Кинь название, посмотрю вечером.", time: "15:20" }
-  ],
-  marat: [
-    { sender: "them", text: "Как тебе разбор «Бэтмена»?", time: "12:10" },
-    { sender: "me", text: "Ещё не смотрел, добавил на вечер.", time: "12:11" },
-    { sender: "them", text: "Окей, потом обсудим!", time: "12:12" }
-  ]
-};
-
-const messages = loadMessages();
-let activeChat = "aliya";
+// Главная страница и чат используют одинаковые данные и формат истории.
+const app = window.CrysPlay;
+let messages = app.loadMessages();
+const requestedChat = new URLSearchParams(location.search).get("chat");
+let activeChat = app.getContact(requestedChat) ? requestedChat : "aliya";
 const drafts = { aliya: "", daniyar: "", marat: "" };
 const chatButtons = document.querySelectorAll(".chat-contact");
 const messageList = document.getElementById("message-list");
@@ -35,24 +13,25 @@ const messageInput = document.getElementById("message-input");
 const sendButton = document.getElementById("send-button");
 const messageForm = document.getElementById("message-form");
 
-function loadMessages() {
-  const result = structuredClone(initialMessages);
-  try {
-    const saved = JSON.parse(localStorage.getItem(storageKey));
-    for (const chatId of Object.keys(contacts)) {
-      const history = saved?.[chatId];
-      if (Array.isArray(history) && history.length > 0 && history.every(message =>
-        message && ["me", "them"].includes(message.sender) &&
-        typeof message.text === "string" && message.text.length <= 2000 &&
-        typeof message.time === "string"
-      )) {
-        result[chatId] = history;
-      }
-    }
-  } catch {
-    // Если хранилище недоступно, чат продолжает работать до закрытия страницы.
-  }
-  return result;
+function createVideoAttachment(video) {
+  const link = document.createElement("a");
+  link.className = "shared-video-card";
+  link.href = "../" + (video.watchUrl || video.previewSrc);
+  const image = document.createElement("img");
+  image.src = "../" + video.image;
+  image.alt = video.alt;
+  image.width = 320;
+  image.height = 180;
+  image.loading = "lazy";
+  const title = document.createElement("strong");
+  title.textContent = video.title;
+  const channel = document.createElement("span");
+  channel.textContent = video.channel;
+  const action = document.createElement("span");
+  action.className = "shared-video-action";
+  action.textContent = video.watchUrl ? "Смотреть видео ↗" : "Открыть фрагмент ↗";
+  link.append(image, title, channel, action);
+  return link;
 }
 
 function renderMessages() {
@@ -66,8 +45,13 @@ function renderMessages() {
     const bubble = messageTemplate.content.firstElementChild.cloneNode(true);
     bubble.classList.toggle("message-own", message.sender === "me");
     // textContent выводит введённый текст, не исполняя HTML и скрипты.
-    bubble.querySelector("p").textContent = message.text;
+    bubble.querySelector("p").textContent = message.videoId ? "Делюсь видео" : message.text;
     bubble.querySelector("time").textContent = message.time;
+    const video = app.getVideo(message.videoId);
+    if (video) {
+      bubble.classList.add("message-video");
+      bubble.insertBefore(createVideoAttachment(video), bubble.querySelector("time"));
+    }
     fragment.append(bubble);
   }
   messageList.replaceChildren(fragment);
@@ -77,10 +61,10 @@ function renderMessages() {
 function updateChatPreviews() {
   for (const button of chatButtons) {
     const lastMessage = messages[button.dataset.chat].at(-1);
-    button.querySelector(".contact-preview").textContent =
-      (lastMessage.sender === "me" ? "Вы: " : "") + lastMessage.text;
-    button.querySelector(".contact-time").textContent = lastMessage.time;
-    button.setAttribute("aria-label", contacts[button.dataset.chat].name + ": " + lastMessage.text);
+    const preview = lastMessage ? (lastMessage.sender === "me" ? "Вы: " : "") + lastMessage.text : "Пока нет сообщений";
+    button.querySelector(".contact-preview").textContent = preview;
+    button.querySelector(".contact-time").textContent = lastMessage?.time || "";
+    button.setAttribute("aria-label", app.getContact(button.dataset.chat).name + ": " + preview);
   }
 }
 
@@ -91,9 +75,10 @@ function updateComposer() {
 }
 
 function selectChat(chatId) {
+  const contact = app.getContact(chatId);
+  if (!contact) return;
   drafts[activeChat] = messageInput.value;
   activeChat = chatId;
-  const contact = contacts[chatId];
   document.getElementById("conversation-title").textContent = contact.name;
   document.getElementById("conversation-status").textContent = contact.status;
   const avatar = document.getElementById("conversation-avatar");
@@ -119,15 +104,13 @@ messageForm.addEventListener("submit", event => {
   const text = messageInput.value.trim();
   if (!text || text.length > 2000) return;
 
-  const time = new Intl.DateTimeFormat("ru-RU", {
-    hour: "2-digit", minute: "2-digit", timeZone: "Asia/Qyzylorda"
-  }).format(new Date());
-  messages[activeChat].push({ sender: "me", text, time });
-  try {
-    localStorage.setItem(storageKey, JSON.stringify(messages));
-  } catch {
-    // Отправка работает и без доступа к localStorage.
-  }
+  // Свежая история содержит в том числе видео, отправленные из другой вкладки.
+  const result = app.appendMessage(activeChat, { sender: "me", text, time: app.currentTime() });
+  if (!result) return;
+  messages = result.messages;
+  document.getElementById("composer-hint").textContent = result.persisted
+    ? "Enter — отправить · Shift + Enter — новая строка"
+    : "Сообщение добавлено. История сохранится только до закрытия страницы.";
   drafts[activeChat] = "";
   messageInput.value = "";
   renderMessages();
@@ -147,6 +130,18 @@ for (const button of chatButtons) {
   button.addEventListener("click", () => selectChat(button.dataset.chat));
 }
 
-renderMessages();
+const search = document.getElementById("video-search");
+search.form.addEventListener("submit", event => {
+  event.preventDefault();
+  location.href = "../index.html?q=" + encodeURIComponent(search.value.trim());
+});
+window.addEventListener("storage", event => {
+  if (event.key === app.keys.messages || event.key === null) {
+    messages = app.loadMessages();
+    renderMessages();
+    updateChatPreviews();
+  }
+});
+
+selectChat(activeChat);
 updateChatPreviews();
-updateComposer();

@@ -8,6 +8,9 @@
     <link rel="icon" type="image/png" href="assets/general/favicon.png">
     <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/app-data.js" defer></script>
+    <script src="assets/js/feed.js" defer></script>
+    <script src="assets/js/video-previews.js" defer></script>
   </head>
   <body>
     <!-- Общие иконки: SVG без сторонних шрифтов и JavaScript. -->
@@ -36,8 +39,8 @@
                 </a>
                 <form class="search-form" role="search" aria-label="Search Video">
                 <label class="visually-hidden" for="video-search">Search Video</label>
-                <input class="form-control" id="video-search" type="search" placeholder="Find Something intresting..." disabled>
-                <button type="button" class="search-button" aria-label="Find videos" disabled>
+                <input class="form-control" id="video-search" type="search" placeholder="Найти видео или канал…" maxlength="200" aria-controls="video-grid">
+                <button type="submit" class="search-button" aria-label="Найти видео">
                     <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
                 </button>
                 </form>
@@ -117,19 +120,28 @@
             <div><h1 id="recommendations-heading">Рекомендации</h1></div>
             <span class="feed-label"><span></span>Видео для тебя</span>
           </div>
-          <ul class="category-list list-unstyled" aria-label="Категории видео, статический интерфейс">
-            <li><span class="category is-selected">Все видео</span></li>
-            <li><span class="category">Футбол</span></li>
-            <li><span class="category">Природа</span></li>
-            <li><span class="category">Челленджи</span></li>
-            <li><span class="category">Кино</span></li>
-            <li><span class="category">4K HDR</span></li>
+          <ul class="category-list list-unstyled" aria-label="Категории видео">
+            <li><button class="category is-selected" type="button" data-category="all" aria-pressed="true">Все видео</button></li>
+            <li><button class="category" type="button" data-category="football" aria-pressed="false">Футбол</button></li>
+            <li><button class="category" type="button" data-category="nature" aria-pressed="false">Природа</button></li>
+            <li><button class="category" type="button" data-category="challenges" aria-pressed="false">Челленджи</button></li>
+            <li><button class="category" type="button" data-category="movies" aria-pressed="false">Кино</button></li>
+            <li><button class="category" type="button" data-category="4k" aria-pressed="false">4K HDR</button></li>
           </ul>
+          <div class="feed-toolbar">
+            <button class="watch-later-toggle" id="watch-later-toggle" type="button" aria-pressed="false" aria-controls="video-grid">Смотреть позже <span id="watch-later-count">0</span></button>
+            <p id="result-count" role="status" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <div class="feed-empty" id="feed-empty" hidden>
+            <h2 id="empty-title">Ничего не найдено</h2>
+            <p id="empty-description">Попробуй другое название, канал или категорию.</p>
+            <button class="feed-primary-button" id="reset-filters" type="button">Показать все видео</button>
+          </div>
 
           <!-- Bootstrap Grid: 1 столбец на телефоне, 2 на планшете, 3 на компьютере. -->
-          <div class="video-grid row row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <div class="video-grid row row-cols-1 row-cols-md-2 row-cols-lg-3" id="video-grid">
             <div class="col">
-              <article class="video-card">
+              <article class="video-card" data-preview-src="assets/videos/messi-barcelona-preview.mp4">
                 <div class="video-thumbnail">
                   <img src="assets/images/messi-barcelona.jpg" alt="Лионель Месси празднует гол в форме Барселоны на стадионе" width="550" height="310">
                   <span class="duration">10:24</span>
@@ -146,7 +158,7 @@
               </article>
             </div>
             <div class="col">
-              <article class="video-card">
+              <article class="video-card" data-preview-src="videos/vid1.mp4">
                 <a class="video-link" href="videos/video-1.html" aria-label="Смотреть COSTA RICA IN 4K 60fps HDR (ULTRA HD)">
                   <div class="video-thumbnail">
                     <img src="assets/images/vid1.png" alt="Река и облака с надписями OLED Dolby Vision и 4K HDR" width="720" height="404">
@@ -165,7 +177,7 @@
               </article>
             </div>
             <div class="col">
-              <article class="video-card">
+              <article class="video-card" data-preview-src="assets/videos/messi-argentina-preview.mp4">
                 <div class="video-thumbnail">
                   <img src="assets/images/messi-argentina.jpg" alt="Лионель Месси в форме сборной Аргентины с руками у ушей" width="739" height="415" loading="lazy">
                   <span class="duration">08:35</span>
@@ -182,7 +194,7 @@
               </article>
             </div>
             <div class="col">
-              <article class="video-card">
+              <article class="video-card" data-preview-src="assets/videos/batman-preview.mp4">
                 <div class="video-thumbnail">
                   <img src="assets/images/vid3.webp" alt="Загадочник из фильма «Бэтмен» с надписью Does he know?" width="800" height="450" loading="lazy">
                   <span class="duration">15:37</span>
@@ -199,7 +211,7 @@
               </article>
             </div>
             <div class="col">
-              <article class="video-card">
+              <article class="video-card" data-preview-src="assets/videos/ronaldo-messi-preview.mp4">
                 <div class="video-thumbnail">
                   <img src="assets/images/ronaldo-messi.jpg" alt="Портреты Криштиану Роналду и Лионеля Месси рядом" width="739" height="415" loading="lazy">
                   <span class="duration">21:16</span>
@@ -218,8 +230,42 @@
           </div>
         </section>
 
+        <noscript><p>Включи JavaScript, чтобы пользоваться поиском, категориями, сохранением и отправкой видео.</p></noscript>
         <footer class="main-footer d-flex justify-content-between"><span>Открывай новое. Каждый день.</span><span>Crystal Play kz © 2026</span></footer>
       </main>
+    </div>
+    <template id="video-card-template">
+      <div class="col">
+        <article class="video-card">
+          <a class="video-link">
+            <div class="video-thumbnail">
+              <img width="720" height="405" loading="lazy" alt="">
+              <span class="duration"></span>
+            </div>
+            <div class="video-details">
+              <span class="channel-avatar" aria-hidden="true"></span>
+              <div class="video-text"><h2></h2><p class="channel-name"></p><p class="video-stats"></p></div>
+            </div>
+          </a>
+          <div class="video-card-actions">
+            <button class="save-video" type="button" aria-pressed="false">+ Смотреть позже</button>
+            <button class="share-video" type="button">Отправить в чат</button>
+          </div>
+        </article>
+      </div>
+    </template>
+    <dialog class="share-dialog" id="share-dialog" aria-labelledby="share-heading">
+      <div class="share-dialog-heading"><h2 id="share-heading">Отправить видео</h2><button class="dialog-close" id="share-close" type="button" aria-label="Закрыть">×</button></div>
+      <div class="share-video-summary"><img id="share-video-image" width="120" height="68" alt=""><p id="share-video-title"></p></div>
+      <form id="share-form" novalidate>
+        <label for="share-recipient">Кому отправить</label>
+        <select id="share-recipient" name="recipient" required aria-describedby="share-error"><option value="">Выбери контакт</option></select>
+        <p class="share-error" id="share-error" role="alert"></p>
+        <button class="feed-primary-button" id="share-submit" type="submit">Отправить</button>
+      </form>
+    </dialog>
+    <div class="feed-notice" id="feed-notice" role="status" aria-live="polite" aria-atomic="true" hidden>
+      <span id="notice-text"></span><a id="notice-link" hidden>Открыть чат</a><button id="notice-close" type="button" aria-label="Закрыть уведомление">×</button>
     </div>
   </body>
 </html>

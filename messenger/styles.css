@@ -50,6 +50,13 @@
 .message-own time { padding-right: 14px; color: #d4ccef; }
 .message-check { position: absolute; right: 13px; bottom: 8px; font-size: 11px; color: #d4ccef; }
 .message:not(.message-own) .message-check { display: none; }
+.message-video { width: 320px; }
+.shared-video-card { display: flex; flex-direction: column; gap: 7px; margin: 8px 0 10px; padding: 9px; border: 1px solid #e1dbef; border-radius: 9px; color: var(--ink); background: #fff; }
+.shared-video-card:hover { background: #f5f2fc; }
+.shared-video-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 5px; }
+.shared-video-card strong { font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
+.shared-video-card span { color: var(--muted); font-size: 10px; }
+.shared-video-card .shared-video-action { color: var(--accent); font-weight: 600; }
 
 /* Форма ввода. Звонки остаются disabled, отправка текста работает локально. */
 .message-composer { padding: 20px 28px 15px; border-top: 1px solid var(--line); background: #fff; }
