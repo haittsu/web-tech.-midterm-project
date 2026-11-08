@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="favicon" href="../assets/general/favicon.png">
     <title>COSTA RICA IN 4K 60fps HDR (ULTRA HD)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="../assets/js/user-state.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -49,14 +52,14 @@
                     <li><a href="../index.html" class="nav-item is-current" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#icon-home"/></svg><span>Main</span></a></li>
                     <li><span class="nav-item" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#icon-trending"/></svg><span>Trends</span></span></li>
                     <li><span class="nav-item" aria-disabled="true"><svg class="icon" aria-hidden="true"><use href="#icon-subscriptions"/></svg><span>Channels</span></span></li>
-                    <li><a class="nav-item" href="../studio/index.html"><svg class="icon" aria-hidden="true"><use href="#icon-library"/></svg><span>Студио</span></a></li>
+                    <li><a class="nav-item" href="../studio/index.html"><svg class="icon" aria-hidden="true"><use href="#icon-library"/></svg><span>Studio</span></a></li>
                 </ul>
                 </nav>
 
                 <div class="header-actions d-flex align-items-center">
-                <a class="icon-button messenger-button" href="../messenger/index.html" aria-label="Messages"><svg class="icon" aria-hidden="true"><use href="#icon-messenger"/></svg></a>
+                <button class="icon-button messenger-button" type="button" aria-label="Messages" disabled><svg class="icon" aria-hidden="true"><use href="#icon-messenger"/></svg></button>
                 <button class="icon-button notification-button" type="button" aria-label="Notifications" disabled><svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg><span class="notification-dot"></span></button>
-                <a class="profile-avatar" href="../login/index.html" aria-label="Войти в аккаунт">А</a>
+                <a class="profile-avatar" href="../login/index.html" aria-label="Sign in">А</a>
                 </div>
             </div>
         </header>
@@ -161,34 +164,39 @@
                 <div class="video-info">
                     <h1 id="video-title">COSTA RICA IN 4K 60fps HDR (ULTRA HD)</h1>
                     <div class="video-stats" aria-label="Video statistics">
-                        <span>0 views</span>
+                        <span id="view-count">0 views</span>
                         <span aria-hidden="true">·</span>
-                        <span>0 likes</span>
+                        <span id="like-count">0 likes</span>
                     </div>
 
                     <div class="video-actions">
                         <div class="channel-details">
                             <span class="channel-avatar" aria-hidden="true">P</span>
                             <span class="channel-name">Jacob + Katie Schwarz</span>
-                            <button class="subscribe-button" type="button">Subscribe</button>
+                            <button class="subscribe-button" type="button" aria-pressed="false">Subscribe</button>
                         </div>
 
-                        <button class="like-button" type="button" aria-pressed="true">
+                        <button class="like-button" type="button" aria-pressed="false">
                             <svg class="icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
-                            Liked
+                            <span id="like-label">Like</span>
                         </button>
                     </div>
 
-                    <p class="video-description mb-4">We've re-mastered and re-uploaded our favorite video in HDR!</p>
+                    <button id="toggle-description" class="btn btn-sm btn-outline-secondary mt-3" type="button" aria-expanded="true" aria-controls="video-description">Hide description</button>
+                    <p id="video-description" class="video-description">We've re-mastered and re-uploaded our favorite video in HDR!</p>
                     
                     
                     
-                    <h3>Comments</h3>
-                    <div class="comment">
+                    <h3>Comments <span id="comment-count">(0)</span></h3>
+                    <form class="comment" id="comment-form">
                         <button class="profile-avatar" type="button" aria-label="Profile-name" disabled>А</button>
-                        <textarea name="usercomment" id="usercomment"></textarea>
-                        <button class="button-send"><i class="bi bi-send"></i></button>
-                    </div>
+                        <label class="visually-hidden" for="usercomment">Write a comment</label>
+                        <textarea name="usercomment" id="usercomment" placeholder="Write a comment..." maxlength="2000" required></textarea>
+                        <button class="button-send" type="submit" aria-label="Post comment"><i class="bi bi-send" aria-hidden="true"></i></button>
+                    </form>
+                    <p id="interaction-status" role="status" class="mt-2"></p>
+                    <p id="storage-status" role="status" class="text-danger"></p>
+                    <div id="comment-list"></div>
                 </div>
             </section>
 
@@ -205,6 +213,17 @@
                     </div>
                 </article>
 
+                <article class="feed-video-card">
+                    <img class="feed-video-thumbnail" src="../assets/images/vid2.jpg" alt="Placeholder video thumbnail">
+                    <div class="feed-video-details">
+                        <span class="channel-avatar" aria-hidden="true">P</span>
+                        <div>
+                            <h2>ПОДСТАВИЛ СВОЕГО КЕНТА ЧЕЛЛЕНДЖ 😱😱😱</h2>
+                            <p>Pasterok123</p>
+                            <span>94k views · 2 weeks ago</span>
+                        </div>
+                    </div>
+                </article>
 
                 <article class="feed-video-card">
                     <img class="feed-video-thumbnail" src="../assets/images/vid3.webp" alt="Placeholder video thumbnail">

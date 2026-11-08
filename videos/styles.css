@@ -279,8 +279,20 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
 .like-button .icon {
     width: 17px;
     height: 17px;
-    fill: currentColor;
+    fill: none;
 }
+
+.like-button[aria-pressed="true"] .icon { fill: currentColor; }
+.like-button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.subscribe-button[aria-pressed="true"] { background: #eeeafc; color: var(--accent); }
+.video-actions button:focus-visible,
+.button-send:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.channel-details { flex-wrap: wrap; }
+.channel-name { white-space: normal; }
+.posted-comment { padding: 16px 0; border-bottom: 1px solid var(--line); }
+.posted-comment time { display: block; margin: 4px 0 8px; color: var(--muted); font-size: 12px; }
+.posted-comment p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+#usercomment { min-width: 0; }
 
 .video-description {
     margin: 16px 0 0;

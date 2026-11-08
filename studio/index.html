@@ -8,6 +8,7 @@
     <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
     <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <script src="../assets/js/user-state.js" defer></script>
   </head>
   <body class="studio-page">
     <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -39,20 +40,20 @@
             <li><a href="../index.html" class="nav-item"><svg class="icon"><use href="#icon-home"/></svg><span>Main</span></a></li>
             <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-trending"/></svg><span>Trends</span></span></li>
             <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-subscriptions"/></svg><span>Channels</span></span></li>
-            <li><a href="index.html" class="nav-item is-current" aria-current="page"><svg class="icon"><use href="#icon-chart"/></svg><span>Студио</span></a></li>
+            <li><a href="index.html" class="nav-item is-current" aria-current="page"><svg class="icon"><use href="#icon-chart"/></svg><span>Studio</span></a></li>
           </ul>
         </nav>
         <div class="header-actions d-flex align-items-center">
-          <button class="icon-button messenger-button" type="button" aria-label="Сообщения" disabled><svg class="icon"><use href="#icon-messenger"/></svg></button>
-          <button class="icon-button notification-button" type="button" aria-label="Уведомления" disabled><svg class="icon"><use href="#icon-bell"/></svg><span class="notification-dot"></span></button>
-          <a class="profile-avatar" href="../login/index.html" aria-label="Войти в аккаунт">А</a>
+                <a class="icon-button messenger-button" href="../messenger/index.html" aria-label="Messages"><svg class="icon" aria-hidden="true"><use href="#icon-messenger"/></svg></a>
+                <button class="icon-button notification-button" type="button" aria-label="Notifications" disabled><svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg><span class="notification-dot"></span></button>
+                <a class="profile-avatar" href="../login/index.html" aria-label="Войти в аккаунт">А</a>
         </div>
       </div>
     </header>
 
     <div class="page-layout container-fluid studio-layout">
       <aside class="sidebar studio-sidebar" aria-label="Разделы Studio">
-        <div class="studio-channel"><span class="studio-avatar">C</span><div><strong>Crystal Play kz</strong><span>@crystalplaykz</span></div></div>
+        <div class="studio-channel"><span class="studio-avatar" data-user-avatar>G</span><div><strong data-user-name>Guest</strong><span data-user-handle>Sign in to personalize your studio</span></div></div>
         <p class="studio-menu-label">Панель управления</p>
         <nav><ul class="studio-menu list-unstyled">
           <li><a class="is-active" href="#analytics"><svg class="icon"><use href="#icon-chart"/></svg>Аналитика</a></li>

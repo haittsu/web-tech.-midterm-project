@@ -1,10 +1,63 @@
-mx tole abil
+# CrysPlay
 
-# Crystal Play kz
+CrysPlay is a responsive front-end prototype of a video-sharing platform. It includes a recommendation feed, short-video cards, video playback, messaging, sign-in, and a creator analytics dashboard.
+
+## Features
+
+- Responsive video feed with categories and recommendations
+- Shorts section with engagement statistics
+- Video player page with channel details, likes, comments, and related videos
+- Messenger interface with interactive chat behavior
+- Sign-in page with email and social login options
+- Creator Studio dashboard with channel metrics and content analytics
+
+## Technologies
+
+- HTML5
+- CSS3
+- JavaScript
+- Bootstrap 5
+- Bootstrap Icons
+
+## Project Structure
+
+```text
+.
+|-- index.html              # Main video feed
+|-- assets/                 # Images, icons, shared styles, and Bootstrap files
+|-- login/                  # Sign-in page
+|-- messenger/              # Messaging interface and JavaScript
+|-- studio/                 # Creator analytics dashboard
+`-- videos/                 # Video player page and media files
+```
+
+## Getting Started
+
+No build step or package installation is required.
+
+1. Clone or download the repository.
+2. Open `index.html` in a modern web browser.
+
+For the most reliable experience, serve the project with a local development server. For example, if Python is installed:
+
+```bash
+python -m http.server 8000
+```
+
+Then visit `http://localhost:8000` in your browser.
+
+## Notes
+
+- This project is a front-end demonstration; authentication, search, notifications, and most content actions are not connected to a backend.
+- Some pages load Bootstrap and Bootstrap Icons from a CDN, so an internet connection may be required for all styles and icons to appear correctly.
+
+## Endterm функции главной страницы и мессенджера
+
+Команда: mx tole abil.
 
 Учебный видеосервис. Endterm продолжает существующий сайт на HTML, CSS и Bootstrap.
 
-## Предпросмотр видео
+### Предпросмотр видео
 
 На главной странице подключены пять предпросмотров: Месси в Барселоне, Costa Rica,
 Месси в Аргентине, «Бэтмен», Роналду и Месси.
@@ -24,7 +77,7 @@ mx tole abil
 находятся в `assets/videos/`; Costa Rica использует существующий `videos/vid1.mp4`.
 Логика находится в `assets/js/video-previews.js`.
 
-## Как проверить
+### Как проверить
 
 Запусти `index.html` через Live Server в редакторе. Это даёт главной странице
 и мессенджеру общее хранилище сообщений. При открытии через `file://` поведение
@@ -41,7 +94,7 @@ node --test tests/*.test.cjs
 Эти проверки используют имитацию DOM и медиаплеера. Отображение и декодирование
 видеофайлов следует дополнительно проверить в браузере.
 
-## Поиск и категории
+### Поиск и категории
 
 Поиск работает при вводе и при отправке формы: по названию, каналу и ключевым
 словам, включая русские названия «Коста-Рика» и «Бэтмен». Категории работают
@@ -52,7 +105,7 @@ node --test tests/*.test.cjs
 Проверка: введи «Месси» (3 видео), выбери «Природа» (0 видео), сбрось фильтры.
 Категория «Футбол» показывает 3 видео, «Кино» — 1, «4K HDR» — 1.
 
-## Смотреть позже
+### Смотреть позже
 
 Под каждой карточкой есть кнопка добавления и удаления из списка. Кнопка
 «Смотреть позже» над лентой переключает режим отображения сохранённых видео;
@@ -62,7 +115,7 @@ node --test tests/*.test.cjs
 Проверка: сохрани два видео, открой список, обнови страницу, снова открой список,
 удали одно видео, затем последнее. Проверь счётчик и сообщение о пустом списке.
 
-## Отправка видео в чат
+### Отправка видео в чат
 
 Нажми «Отправить в чат», выбери Алию, Данияра или Марата и нажми «Отправить».
 Уведомление содержит ссылку на выбранную переписку. Карточка видео сохраняется
