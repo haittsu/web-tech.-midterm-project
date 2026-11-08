@@ -3,34 +3,41 @@ const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const status = document.querySelector('#login-status');
 
-form.noValidate = true;
+function validateInput(input) {
+    let message = '';
+
+    if (input.validity.valueMissing) {
+        message = input === email
+            ? 'Please enter your email address.'
+            : 'Please enter your password.';
+    } else if (input.validity.typeMismatch) {
+        message = 'Please enter a valid email address.';
+    }
+
+    document.querySelector(`#${input.id}-error`).textContent = message;
+    input.classList.toggle('is-valid', input.validity.valid);
+    input.classList.toggle('is-invalid', !input.validity.valid);
+}
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
     status.textContent = '';
     email.value = email.value.trim();
 
-    email.setCustomValidity('');
-    password.setCustomValidity('');
+    form.classList.add('was-validated');
+    [email, password].forEach(validateInput);
 
-    if (!email.value) {
-        email.setCustomValidity('Please enter your email address.');
-    } else if (email.validity.typeMismatch) {
-        email.setCustomValidity('Please enter a valid email address.');
+    if (!form.checkValidity()) {
+        form.querySelector(':invalid').focus();
+        return;
     }
-
-    if (!password.value) {
-        password.setCustomValidity('Please enter your password.');
-    }
-
-    if (!form.reportValidity()) return;
 
     status.textContent = 'Signed in.';
 });
 
 [email, password].forEach((input) => {
     input.addEventListener('input', () => {
-        input.setCustomValidity('');
+        if (form.classList.contains('was-validated')) validateInput(input);
         status.textContent = '';
     });
 });
