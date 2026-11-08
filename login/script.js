@@ -2,6 +2,13 @@ const form = document.querySelector('.signin-form');
 const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const status = document.querySelector('#login-status');
+const togglePassword = document.querySelector('#toggle-password');
+
+togglePassword.addEventListener('click', () => {
+    const showPassword = password.type === 'password';
+    password.type = showPassword ? 'text' : 'password';
+    togglePassword.textContent = showPassword ? 'Hide' : 'Show';
+});
 
 function validateInput(input) {
     let message = '';
