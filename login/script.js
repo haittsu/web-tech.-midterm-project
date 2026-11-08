@@ -3,6 +3,9 @@ const email = document.querySelector('#email');
 const password = document.querySelector('#password');
 const status = document.querySelector('#login-status');
 const togglePassword = document.querySelector('#toggle-password');
+const animationDuration = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 200;
+
+$('.signin-form .invalid-feedback').hide();
 
 togglePassword.addEventListener('click', () => {
     const showPassword = password.type === 'password';
@@ -21,7 +24,12 @@ function validateInput(input) {
         message = 'Please enter a valid email address.';
     }
 
-    document.querySelector(`#${input.id}-error`).textContent = message;
+    const feedback = $(`#${input.id}-error`);
+    feedback.stop(true, true);
+
+    if (message) {
+        feedback.text(message).slideDown(animationDuration);
+    }
     input.classList.toggle('is-valid', input.validity.valid);
     input.classList.toggle('is-invalid', !input.validity.valid);
 }
@@ -39,7 +47,7 @@ form.addEventListener('submit', (event) => {
         return;
     }
 
-    status.textContent = 'Signed in.';
+    window.location.assign('../index.html');
 });
 
 [email, password].forEach((input) => {
