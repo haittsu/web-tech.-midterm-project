@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="favicon" href="../assets/general/favicon.png">
     <title>COSTA RICA IN 4K 60fps HDR (ULTRA HD)</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
     <div class="container">
@@ -161,21 +163,21 @@
                 <div class="video-info">
                     <h1 id="video-title">COSTA RICA IN 4K 60fps HDR (ULTRA HD)</h1>
                     <div class="video-stats" aria-label="Video statistics">
-                        <span>0 views</span>
+                        <span id="view-count">0 views</span>
                         <span aria-hidden="true">·</span>
-                        <span>0 likes</span>
+                        <span id="like-count">0 likes</span>
                     </div>
 
                     <div class="video-actions">
                         <div class="channel-details">
                             <span class="channel-avatar" aria-hidden="true">P</span>
                             <span class="channel-name">Jacob + Katie Schwarz</span>
-                            <button class="subscribe-button" type="button">Subscribe</button>
+                            <button class="subscribe-button" type="button" aria-pressed="false">Subscribe</button>
                         </div>
 
-                        <button class="like-button" type="button" aria-pressed="true">
+                        <button class="like-button" type="button" aria-pressed="false">
                             <svg class="icon" aria-hidden="true"><use href="#icon-heart"></use></svg>
-                            Liked
+                            <span id="like-label">Like</span>
                         </button>
                     </div>
 
@@ -183,12 +185,16 @@
                     
                     
                     
-                    <h3>Comments</h3>
-                    <div class="comment">
+                    <h3>Comments <span id="comment-count">(0)</span></h3>
+                    <form class="comment" id="comment-form">
                         <button class="profile-avatar" type="button" aria-label="Profile-name" disabled>А</button>
-                        <textarea name="usercomment" id="usercomment"></textarea>
-                        <button class="button-send"><i class="bi bi-send"></i></button>
-                    </div>
+                        <label class="visually-hidden" for="usercomment">Write a comment</label>
+                        <textarea name="usercomment" id="usercomment" placeholder="Write a comment..." maxlength="2000" required></textarea>
+                        <button class="button-send" type="submit" aria-label="Post comment"><i class="bi bi-send" aria-hidden="true"></i></button>
+                    </form>
+                    <p id="interaction-status" role="status" class="mt-2"></p>
+                    <p id="storage-status" role="status" class="text-danger"></p>
+                    <div id="comment-list"></div>
                 </div>
             </section>
 
