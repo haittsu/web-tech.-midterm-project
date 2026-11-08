@@ -47,6 +47,11 @@ form.addEventListener('submit', (event) => {
         return;
     }
 
+    if (!window.CrysPlayUser.signIn(email.value)) {
+        status.textContent = 'Your profile could not be saved. Please allow browser storage and try again.';
+        return;
+    }
+
     window.location.assign('../index.html');
 });
 

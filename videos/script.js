@@ -1,4 +1,28 @@
 const storageKey = 'crysplay:video-1';
+const userStorageKey = 'crysplay:user';
+let activeUser;
+try {
+    activeUser = localStorage.getItem(userStorageKey);
+} catch {
+    // Existing storage error handling below keeps the page usable.
+}
+
+function userChanged() {
+    try {
+        return localStorage.getItem(userStorageKey) !== activeUser;
+    } catch {
+        return false;
+    }
+}
+
+window.addEventListener('storage', event => {
+    if ((event.key === userStorageKey || event.key === null) && userChanged()) {
+        window.location.reload();
+    }
+});
+window.addEventListener('pageshow', () => {
+    if (userChanged()) window.location.reload();
+});
 const likeButton = document.querySelector('.like-button');
 const subscribeButton = document.querySelector('.subscribe-button');
 const commentForm = document.querySelector('#comment-form');
@@ -7,14 +31,17 @@ const commentList = document.querySelector('#comment-list');
 const interactionStatus = document.querySelector('#interaction-status');
 const storageStatus = document.querySelector('#storage-status');
 const video = document.querySelector('.video');
+const descriptionButton = document.querySelector('#toggle-description');
+const description = document.querySelector('#video-description');
 const likeAnimation = { scale: 1 };
 let viewCounted = false;
-let state = { liked: false, subscribed: false, comments: [], draft: '', views: 0 };
+let state = { liked: false, subscribed: false, comments: [], draft: '', views: 0, descriptionHidden: false };
 
 try {
     const saved = JSON.parse(localStorage.getItem(storageKey));
     if (saved && typeof saved === 'object') {
         state.liked = saved.liked === true;
+        state.descriptionHidden = saved.descriptionHidden === true;
         state.views = Number.isSafeInteger(saved.views) && saved.views >= 0 ? saved.views : 0;
         state.subscribed = saved.subscribed === true;
         state.draft = typeof saved.draft === 'string' ? saved.draft.slice(0, 2000) : '';
@@ -29,6 +56,11 @@ try {
 }
 
 function saveState() {
+    // A video tab opened by the previous user must not restore their activity.
+    if (userChanged()) {
+        window.location.reload();
+        return;
+    }
     try {
         localStorage.setItem(storageKey, JSON.stringify(state));
         storageStatus.textContent = '';
@@ -36,6 +68,27 @@ function saveState() {
         storageStatus.textContent = 'Changes are visible here, but could not be saved for your next visit.';
     }
 }
+
+function renderDescription(animate = false) {
+    descriptionButton.textContent = state.descriptionHidden ? 'Show description' : 'Hide description';
+    descriptionButton.setAttribute('aria-expanded', String(!state.descriptionHidden));
+    if (typeof window.jQuery === 'function') {
+        const duration = animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 200 : 0;
+        const panel = window.jQuery(description).stop(true, true);
+        if (state.descriptionHidden) panel.slideUp(duration);
+        else panel.slideDown(duration);
+    } else {
+        description.style.display = state.descriptionHidden ? 'none' : '';
+    }
+}
+
+descriptionButton.addEventListener('click', () => {
+    state.descriptionHidden = !state.descriptionHidden;
+    renderDescription(true);
+    saveState();
+});
+
+renderDescription();
 
 function renderActions() {
     document.querySelector('#view-count').textContent = `${state.views.toLocaleString()} ${state.views === 1 ? 'view' : 'views'}`;
