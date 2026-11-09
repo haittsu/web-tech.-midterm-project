@@ -39,6 +39,11 @@ window.CrysPlay = (() => {
       keywords: "cristiano ronaldo lionel messi криштиану роналду месси футбол"
     }
   ];
+  const shorts = [
+    { id: "barcelona-goal", views: 128000, likes: 12400, comments: 248 },
+    { id: "argentina-short", views: 94000, likes: 8700, comments: 156 },
+    { id: "riddler-short", views: 204000, likes: 21000, comments: 392 }
+  ];
   const contacts = [
     { id: "aliya", name: "Алия", initial: "А", status: "В сети", online: true },
     { id: "daniyar", name: "Данияр", initial: "Д", status: "Был недавно", online: false },
@@ -163,6 +168,6 @@ window.CrysPlay = (() => {
     }, { requirePersistence: true });
   }
 
-  return { videos, contacts, keys, getVideo, getContact, filterVideos,
+  return { videos, shorts, contacts, keys, getVideo, getContact, filterVideos,
     getSavedIds, toggleSaved, loadMessages, appendMessage, shareVideo, currentTime };
 })();

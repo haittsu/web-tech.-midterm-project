@@ -101,6 +101,16 @@
     dialog.showModal();
   }
 
+  const shortCount = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 1 });
+  for (const short of app.shorts) {
+    const card = document.querySelector(`[data-short-id="${short.id}"]`);
+    if (!card) continue;
+    for (const metric of card.querySelectorAll("[data-short-stat]")) {
+      const value = short[metric.dataset.shortStat];
+      metric.textContent = value >= 1000 ? shortCount.format(value / 1000) + " тыс." : shortCount.format(value);
+    }
+  }
+
   const fragment = document.createDocumentFragment();
   for (const video of app.videos) fragment.append(createVideoCard(video));
   grid.replaceChildren(fragment);

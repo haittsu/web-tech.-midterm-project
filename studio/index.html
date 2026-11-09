@@ -9,6 +9,212 @@
     <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <script src="../assets/js/user-state.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
+    <script type="application/json" id="studio-data">
+    {
+      "videos": [
+        {
+          "id": "minecraft-alpha",
+          "title": "Майнкрафт летсплей 1 серия",
+          "date": "2026-10-21",
+          "thumbnail": "../assets/images/studio-minecraft-alpha.png",
+          "views": 18667,
+          "likes": 780,
+          "comments": 53,
+          "ctr": 6.4,
+          "duration": "94:31:57",
+          "averageSeconds": 582,
+          "subscribers": 72
+        },
+        {
+          "id": "forest-challenge",
+          "title": "24 часа не дышать челлендж",
+          "date": "2026-10-24",
+          "thumbnail": "../assets/images/studio-forest-challenge.png",
+          "views": 12400,
+          "likes": 560,
+          "comments": 39,
+          "ctr": 5.8,
+          "duration": "24:00:00",
+          "averageSeconds": 621,
+          "subscribers": 44
+        },
+        {
+          "id": "thumbnail-investigation",
+          "title": "Что скрывает эта история?",
+          "date": "2026-10-27",
+          "thumbnail": "../assets/images/studio-thumbnail-investigation.jpeg",
+          "views": 26800,
+          "likes": 1340,
+          "comments": 91,
+          "ctr": 7.2,
+          "duration": "5:46",
+          "averageSeconds": 346,
+          "subscribers": 98
+        },
+        {
+          "id": "banana-shock",
+          "title": "банан расказал о жизни",
+          "date": "2026-10-31",
+          "thumbnail": "../assets/images/studio-banana-shock.png",
+          "views": 34700,
+          "likes": 1840,
+          "comments": 132,
+          "ctr": 8.1,
+          "duration": "2:04",
+          "averageSeconds": 276,
+          "subscribers": 143
+        },
+        {
+          "id": "mario-secret-level",
+          "title": "секретный уровень марио",
+          "date": "2026-11-03",
+          "thumbnail": "../assets/images/studio-mario-secret-level.png",
+          "views": 50000,
+          "likes": 2960,
+          "comments": 217,
+          "ctr": 9.3,
+          "duration": "8:14",
+          "averageSeconds": 494,
+          "subscribers": 225
+        },
+        {
+          "id": "accuracy-battle",
+          "title": "битва за аккуратность",
+          "date": "2026-11-07",
+          "thumbnail": "../assets/images/studio-accuracy-battle.png",
+          "views": 21900,
+          "likes": 1150,
+          "comments": 86,
+          "ctr": 6.7,
+          "duration": "6:03",
+          "averageSeconds": 363,
+          "subscribers": 91
+        }
+      ],
+      "audience": [
+        [
+          {
+            "title": "Пол",
+            "items": [
+              {
+                "label": "Мужчины",
+                "percent": 62
+              },
+              {
+                "label": "Женщины",
+                "percent": 38
+              }
+            ]
+          },
+          {
+            "title": "Устройства",
+            "items": [
+              {
+                "label": "Смартфоны",
+                "percent": 72
+              },
+              {
+                "label": "Компьютеры",
+                "percent": 23
+              },
+              {
+                "label": "Планшеты",
+                "percent": 5
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "title": "Возраст",
+            "items": [
+              {
+                "label": "13–17 лет",
+                "percent": 12
+              },
+              {
+                "label": "18–24 года",
+                "percent": 39
+              },
+              {
+                "label": "25–34 года",
+                "percent": 30
+              },
+              {
+                "label": "35–44 года",
+                "percent": 12
+              },
+              {
+                "label": "45 лет и старше",
+                "percent": 7
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "title": "Страны",
+            "items": [
+              {
+                "label": "Казахстан",
+                "percent": 46
+              },
+              {
+                "label": "Россия",
+                "percent": 25
+              },
+              {
+                "label": "Узбекистан",
+                "percent": 12
+              },
+              {
+                "label": "Кыргызстан",
+                "percent": 7
+              },
+              {
+                "label": "Другие страны",
+                "percent": 10
+              }
+            ]
+          }
+        ]
+      ],
+      "recentComments": [
+        {
+          "videoId": "minecraft-alpha",
+          "author": "@pixel_sasha228",
+          "text": "Самые лучшее 94 часа в жизни"
+        },
+        {
+          "videoId": "forest-challenge",
+          "author": "@aya_trails",
+          "text": "Мой хомячек тоже проходит этот челлендж вот уже третий день"
+        },
+        {
+          "videoId": "thumbnail-investigation",
+          "author": "@doc_strange",
+          "text": "Вонг верховный маг ему можно врать"
+        },
+        {
+          "videoId": "banana-shock",
+          "author": "@nika_reads",
+          "text": "Не думала, что за две минуты успею так проникнуться историей банана"
+        },
+        {
+          "videoId": "mario-secret-level",
+          "author": "@BB_123",
+          "text": "I was cracked after 18 years too"
+        },
+        {
+          "videoId": "accuracy-battle",
+          "author": "@dana_aim",
+          "text": "Даже я играю лучше"
+        }
+      ]
+    }
+    </script>
+    <script src="scirpt.js" defer></script>
   </head>
   <body class="studio-page">
     <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -19,7 +225,7 @@
         <symbol id="icon-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4.5 4.5"/></symbol>
         <symbol id="icon-messenger" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 10 10 0 0 1-4-.9L3 21l1.4-4.7A9 9 0 1 1 21 11.5Z"/><path d="m7 13 4-4 2 3 4-3"/></symbol>
         <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
-        <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 19V5m0 14h17"/><path d="m7 15 4-4 3 2 5-6"/></symbol>
+        <symbol id="icon-library" viewBox="0 0 24 24"><rect x="7" y="3" width="14" height="18" rx="2"/><path d="M3 6v12m9-10 5 4-5 4Z"/></symbol>
         <symbol id="icon-video" viewBox="0 0 24 24"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3Z"/></symbol>
         <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6M16 5a3 3 0 0 1 0 6m2 3a4 4 0 0 1 3 3.9"/></symbol>
         <symbol id="icon-comment" viewBox="0 0 24 24"><path d="M21 11.5a9 9 0 0 1-9 9 10 10 0 0 1-4-.9L3 21l1.4-4.7A9 9 0 1 1 21 11.5Z"/><path d="M8 11.5h.1m3.9 0h.1m3.9 0h.1"/></symbol>
@@ -40,7 +246,7 @@
             <li><a href="../index.html" class="nav-item"><svg class="icon"><use href="#icon-home"/></svg><span>Main</span></a></li>
             <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-trending"/></svg><span>Trends</span></span></li>
             <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-subscriptions"/></svg><span>Channels</span></span></li>
-            <li><a href="index.html" class="nav-item is-current" aria-current="page"><svg class="icon"><use href="#icon-chart"/></svg><span>Studio</span></a></li>
+            <li><a href="index.html" class="nav-item is-current" aria-current="page"><svg class="icon"><use href="#icon-library"/></svg><span>Studio</span></a></li>
           </ul>
         </nav>
         <div class="header-actions d-flex align-items-center">
@@ -57,46 +263,120 @@
         <p class="studio-menu-label">Панель управления</p>
         <nav><ul class="studio-menu list-unstyled">
           <li><a class="is-active" href="#analytics"><svg class="icon"><use href="#icon-chart"/></svg>Аналитика</a></li>
-          <li><a href="#content"><svg class="icon"><use href="#icon-video"/></svg>Контент</a></li>
           <li><a href="#audience"><svg class="icon"><use href="#icon-users"/></svg>Аудитория</a></li>
+          <li><a href="#content"><svg class="icon"><use href="#icon-video"/></svg>Контент</a></li>
           <li><a href="#comments"><svg class="icon"><use href="#icon-comment"/></svg>Комментарии</a></li>
         </ul></nav>
-        <div class="studio-tip"><span>Совет дня</span><p>Ваши видео о футболе собирают больше всего новых зрителей.</p></div>
+        <div class="studio-tip"><span>Статистика канала</span><p>Итоги рассчитаны по роликам из таблицы «Эффективность контента».</p></div>
       </aside>
 
       <main class="main-content studio-content" id="analytics">
-        <div class="section-heading studio-heading"><div><p class="eyebrow">CRYSTAL PLAY STUDIO</p><h1>Аналитика канала<span class="title-dot">.</span></h1></div><span class="studio-period">Последние 28 дней <strong>⌄</strong></span></div>
+        <div class="section-heading studio-heading"><div><p class="eyebrow">CRYSTAL PLAY STUDIO</p><h1>Аналитика канала<span class="title-dot">.</span></h1></div><span class="studio-period">Все ролики канала</span></div>
+
+        <p class="alert alert-warning" id="studio-config-error" role="alert" hidden></p>
+        <noscript><p class="alert alert-info">Включите JavaScript, чтобы увидеть данные Studio.</p></noscript>
 
         <section class="studio-overview" aria-label="Основные показатели">
-          <article class="metric-card"><span class="metric-label">Просмотры</span><strong>428,6 тыс.</strong><p class="positive">↑ 18,4% <span>к прошлому периоду</span></p></article>
-          <article class="metric-card"><span class="metric-label">Время просмотра</span><strong>12 904 ч</strong><p class="positive">↑ 9,2% <span>к прошлому периоду</span></p></article>
-          <article class="metric-card"><span class="metric-label">Подписчики</span><strong>+1 284</strong><p class="positive">↑ 24,7% <span>к прошлому периоду</span></p></article>
+          <article class="metric-card"><span class="metric-label">Просмотры</span><strong data-total="views">—</strong><p><span>По роликам канала</span></p></article>
+          <article class="metric-card"><span class="metric-label">Лайки</span><strong data-total="likes">—</strong><p><span>По доступным данным</span></p></article>
+          <article class="metric-card"><span class="metric-label">Комментарии</span><strong data-total="comments">—</strong><p><span>По доступным данным</span></p></article>
+          <article class="metric-card"><span class="metric-label">Время просмотра</span><strong data-total="watch-hours">—</strong><p><span>Оценка по известной средней длительности</span></p></article>
+          <article class="metric-card"><span class="metric-label">Подписки</span><strong data-total="subscribers">—</strong><p><span>По доступным данным</span></p></article>
         </section>
 
         <section class="analytics-card" aria-labelledby="views-heading">
-          <div class="analytics-card-header"><div><h2 id="views-heading">Динамика просмотров</h2><p>428 620 просмотров за выбранный период</p></div><span class="chart-total">+18,4%</span></div>
-          <div class="mini-chart" role="img" aria-label="График роста просмотров с 8 до 56 тысяч в день за 28 дней">
-            <div class="chart-grid"></div>
-            <svg viewBox="0 0 720 170" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="chart-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#28109f" stop-opacity=".22"/><stop offset="100%" stop-color="#28109f" stop-opacity="0"/></linearGradient></defs><path class="chart-area" d="M0,139 L52,128 L104,132 L156,102 L208,112 L260,82 L312,96 L364,64 L416,78 L468,54 L520,68 L572,35 L624,50 L676,20 L720,31 L720,170 L0,170 Z"/><path class="chart-line" d="M0,139 L52,128 L104,132 L156,102 L208,112 L260,82 L312,96 L364,64 L416,78 L468,54 L520,68 L572,35 L624,50 L676,20 L720,31"/></svg>
-            <div class="chart-axis"><span>8 сен</span><span>15 сен</span><span>22 сен</span><span>29 сен</span><span>5 окт</span></div>
+          <div class="analytics-card-header"><div><h2 id="views-heading">Распределение просмотров</h2><p id="chart-description">Доля каждого ролика в общем числе просмотров канала</p></div><span class="chart-total" id="chart-total">—</span></div>
+          <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+            <div class="d-flex align-items-center gap-2">
+              <label class="small fw-semibold" for="chart-metric">Показатель</label>
+              <select class="form-select form-select-sm w-auto" id="chart-metric" aria-controls="views-bars" disabled>
+                <option value="views">Просмотры</option>
+                <option value="likes">Лайки</option>
+                <option value="comments">Комментарии</option>
+              </select>
+            </div>
+            <button class="btn btn-sm btn-outline-secondary" id="sort-views" type="button" aria-controls="views-bars" disabled>Сначала больше просмотров</button>
+            <span class="small text-muted" id="views-sort-status" role="status"></span>
           </div>
+          <div class="mt-2" id="views-bars"></div>
+          <template id="views-bar-template">
+            <div class="mb-2">
+              <div class="d-flex justify-content-between gap-2 small"><span data-view-title></span><strong class="text-nowrap" data-view-count></strong></div>
+              <progress class="w-100" value="0" max="1"></progress>
+            </div>
+          </template>
+        </section>
+
+        <section class="analytics-card" id="audience" aria-labelledby="audience-heading">
+          <div class="analytics-card-header">
+            <div>
+              <h2 id="audience-heading">Аудитория</h2>
+              <p>Состав аудитории канала</p>
+            </div>
+          </div>
+          <div class="row row-cols-1 row-cols-lg-3 g-4 mt-0" id="audience-columns"></div>
+          <template id="audience-group-template">
+            <section>
+              <h3 class="h6 mb-2"></h3>
+              <ul class="list-unstyled small mb-0"></ul>
+            </section>
+          </template>
+          <template id="audience-item-template">
+            <li class="mb-2">
+              <div class="d-flex justify-content-between gap-2"><span></span><strong></strong></div>
+              <progress class="w-100" aria-hidden="true" max="100" value="0"></progress>
+            </li>
+          </template>
         </section>
 
         <section class="content-table-section" id="content" aria-labelledby="content-heading">
-          <div class="analytics-card-header"><div><h2 id="content-heading">Эффективность контента</h2><p>Последние опубликованные видео</p></div><a class="table-link" href="#content">Все видео <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
+          <div class="analytics-card-header"><div><h2 id="content-heading">Эффективность контента</h2><p>Опубликованные ролики канала</p></div><a class="table-link" href="#content">Все видео <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
           <div class="table-responsive">
             <table class="table studio-table align-middle mb-0">
-              <caption class="visually-hidden">Показатели последних опубликованных видео</caption>
-              <thead><tr><th scope="col">Видео</th><th scope="col" class="text-end">Просмотры</th><th scope="col" class="text-end">CTR</th><th scope="col" class="text-end">Ср. просмотр</th><th scope="col" class="text-end">Подписчики</th></tr></thead>
-              <tbody>
-                <tr><td><div class="table-video"><img src="../assets/images/messi-barcelona.jpg" alt=""><div><strong>Месси в «Барселоне»: лучшие моменты</strong><span>Опубликовано 2 дня назад</span></div></div></td><td class="text-end">128,4 тыс.</td><td class="text-end">8,6%</td><td class="text-end">6:48</td><td class="text-end positive-number">+486</td></tr>
-                <tr><td><div class="table-video"><img src="../assets/images/vid1.png" alt=""><div><strong>COSTA RICA IN 4K 60fps HDR</strong><span>Опубликовано 5 дней назад</span></div></div></td><td class="text-end">31,2 тыс.</td><td class="text-end">6,9%</td><td class="text-end">5:22</td><td class="text-end positive-number">+112</td></tr>
-                <tr><td><div class="table-video"><img src="../assets/images/messi-argentina.jpg" alt=""><div><strong>Лионель Месси: путь к чемпионству</strong><span>Опубликовано 1 неделю назад</span></div></div></td><td class="text-end">204,1 тыс.</td><td class="text-end">9,4%</td><td class="text-end">7:15</td><td class="text-end positive-number">+578</td></tr>
-              </tbody>
+              <caption class="visually-hidden">Показатели роликов канала</caption>
+              <thead><tr><th scope="col">Видео</th><th scope="col" class="text-end">Просмотры</th><th scope="col" class="text-end">Лайки</th><th scope="col" class="text-end">Комментарии</th><th scope="col" class="text-end">CTR</th><th scope="col" class="text-end">Длина видео</th><th scope="col" class="text-end">Подписчики</th></tr></thead>
+              <tbody id="studio-videos"></tbody>
             </table>
           </div>
+          <template id="studio-video-template">
+            <tr>
+              <td>
+                <div class="table-video">
+                  <img alt="">
+                  <div><strong></strong><span class="d-none"><time></time></span></div>
+                </div>
+              </td>
+              <td class="text-end" data-stat="views"></td>
+              <td class="text-end" data-stat="likes"></td>
+              <td class="text-end" data-stat="comments"></td>
+              <td class="text-end" data-stat="ctr"></td>
+              <td class="text-end" data-stat="duration"></td>
+              <td class="text-end" data-stat="subscribers"></td>
+            </tr>
+          </template>
         </section>
-        <footer class="main-footer d-flex justify-content-between"><span>Данные обновлены сегодня, 10:30</span><span>Crystal Play Studio © 2026</span></footer>
+
+        <section class="analytics-card mt-3" id="comments" aria-labelledby="comments-heading">
+          <div class="analytics-card-header">
+            <div>
+              <h2 id="comments-heading">Комментарии</h2>
+              <p>Отзывы зрителей о роликах канала</p>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush mt-2 mb-0" id="studio-comments"></ul>
+          <p class="small text-muted mt-3 mb-0" id="studio-comments-empty" hidden>Пока нет комментариев.</p>
+          <template id="studio-comment-template">
+            <li class="list-group-item px-0">
+              <div class="d-flex flex-wrap align-items-baseline gap-2 small mb-1">
+                <strong class="text-break" data-comment-author></strong>
+                <span class="text-muted text-break">К видео «<span data-comment-video></span>»</span>
+              </div>
+              <p class="small mb-0 text-break" data-comment-text></p>
+            </li>
+          </template>
+        </section>
+
+        <footer class="main-footer d-flex justify-content-between"><span>Статистика по всем роликам</span><span>Crystal Play Studio © 2026</span></footer>
       </main>
     </div>
   </body>
