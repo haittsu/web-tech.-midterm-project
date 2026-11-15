@@ -2,7 +2,7 @@
 
 (() => {
   const app = window.CrysPlay;
-  const grid = document.querySelector(".video-grid");
+  const grid = document.getElementById("video-grid");
   const template = document.getElementById("video-card-template");
   const search = document.getElementById("video-search");
   const categoryButtons = document.querySelectorAll("[data-category]");
@@ -26,23 +26,30 @@
     notice.hidden = false;
   }
 
-  function createVideoCard(video) {
+  function createVideoCardShell(video) {
     const column = template.content.firstElementChild.cloneNode(true);
     const card = column.querySelector(".video-card");
     card.id = `video-${video.id}`;
     card.dataset.videoId = video.id;
-    card.dataset.previewSrc = video.previewSrc;
+    if (video.previewSrc) card.dataset.previewSrc = video.previewSrc;
     const link = column.querySelector(".video-link");
     link.href = video.watchUrl || video.previewSrc;
     link.setAttribute("aria-label", `${video.watchUrl ? "Смотреть видео" : "Открыть фрагмент"}: ${video.title}`);
     const image = column.querySelector("img");
-    image.src = video.image;
-    image.alt = video.alt;
+    image.src = video.thumbnailUrl || video.image;
+    image.alt = video.alt || video.title;
     column.querySelector("h2").textContent = video.title;
     column.querySelector(".channel-name").textContent = video.channel;
-    column.querySelector(".channel-avatar").textContent = video.avatar;
-    column.querySelector(".video-stats").textContent = video.stats;
-    column.querySelector(".duration").textContent = video.duration;
+    column.querySelector(".channel-avatar").textContent = video.avatar || Array.from(video.channel)[0];
+    column.querySelector(".video-stats").textContent = video.stats || "PeerTube · Blender";
+    column.querySelector(".duration").textContent = typeof video.formatDuration === "function" ? video.formatDuration() : video.duration;
+    return column;
+  }
+
+  app.createVideoCardShell = createVideoCardShell;
+
+  function createVideoCard(video) {
+    const column = createVideoCardShell(video);
     const saveButton = column.querySelector(".save-video");
     saveButton.addEventListener("click", () => {
       const result = app.toggleSaved(video.id);
