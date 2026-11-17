@@ -1,0 +1,37 @@
+.playlist-dialog {
+  width: min(480px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  overflow: auto;
+  padding: 28px;
+  border: 1px solid #e9e9ed;
+  border-radius: 18px;
+  color: #202126;
+  background: #fff;
+  box-shadow: 0 20px 80px #0003;
+}
+.playlist-dialog::backdrop { background: #17122588; }
+.playlist-dialog h2 { margin: 0 0 20px; font-size: 24px; }
+.playlist-dialog p { overflow-wrap: anywhere; }
+.playlist-button {
+  display: inline-block;
+  padding: 9px 14px;
+  border: 1px solid #dddde5;
+  border-radius: 9px;
+  color: #28109f;
+  background: #fff;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.playlist-button:hover { background: #f0ecff; color: #28109f; }
+.playlist-button:disabled { opacity: .55; cursor: default; }
+.playlist-primary { background: #28109f; border-color: #28109f; color: #fff; }
+.playlist-danger { color: #a51b2a; }
+.playlist-button:focus-visible, .playlist-name-form input:focus-visible { outline: 3px solid #8572dc; outline-offset: 3px; }
+.playlist-choices { display: grid; gap: 10px; max-height: 240px; overflow: auto; margin: 20px 0; }
+.playlist-choices button { text-align: left; }
+.playlist-name-form { display: grid; gap: 12px; margin: 20px 0; }
+.playlist-name-form label { display: grid; gap: 8px; font-weight: 600; }
+.playlist-name-form input { width: 100%; min-width: 0; padding: 10px; border: 1px solid #b7b7c5; border-radius: 8px; font: inherit; }
+.playlist-error { color: #a51b2a; margin: 14px 0; }

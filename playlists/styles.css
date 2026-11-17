@@ -46,6 +46,20 @@
 .discover-link { display: inline-flex; align-items: center; gap: 12px; margin-top: 24px; padding: 12px 20px; border-radius: 12px; background: var(--accent); color: #fff; font-weight: 600; }
 .discover-link:hover { background: #1d087d; color: #fff; }
 
+.new-playlist-button:not(:disabled) { background: var(--accent); color: #fff; cursor: pointer; }
+.new-playlist-button:focus-visible { outline: 3px solid #8572dc; outline-offset: 3px; }
+.playlist-card { padding: 24px 28px; border-bottom: 1px solid var(--line); }
+.playlist-card:last-child { border-bottom: 0; }
+.playlist-card summary { cursor: pointer; font-size: 18px; font-weight: 650; overflow-wrap: anywhere; }
+.playlist-card summary:focus-visible { outline: 3px solid #8572dc; outline-offset: 4px; }
+.playlist-card-actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+.playlist-videos { margin: 0; padding: 0; list-style: none; }
+.playlist-videos li { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; border-top: 1px solid var(--line); }
+.playlist-videos li > div { min-width: 0; }
+.playlist-videos a { font-weight: 600; color: var(--accent); overflow-wrap: anywhere; }
+.playlist-videos p { margin: 6px 0 0; color: var(--muted); overflow-wrap: anywhere; }
+.playlist-videos button { flex-shrink: 0; }
+
 @media (max-width: 767.98px) {
   .playlists-page { padding: 30px 20px 40px; }
   .playlists-heading { align-items: flex-start; flex-direction: column; gap: 20px; margin-bottom: 24px; }

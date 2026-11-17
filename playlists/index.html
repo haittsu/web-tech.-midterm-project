@@ -9,7 +9,11 @@
   <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../assets/css/playlists.css">
   <script src="../assets/js/user-state.js" defer></script>
+  <script src="../assets/js/video.js" defer></script>
+  <script src="../assets/js/playlists.js" defer></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
 <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -61,20 +65,20 @@
       <div>
         <h1 id="playlists-title">My Playlists</h1>
       </div>
-      <button class="new-playlist-button" type="button" disabled aria-describedby="playlist-availability"><span aria-hidden="true">+</span> New playlist</button>
+      <button class="new-playlist-button" type="button" disabled><span aria-hidden="true">+</span> New playlist</button>
     </div>
+    <p id="playlist-status" class="playlist-error" role="status"></p>
     <section class="playlist-library" aria-labelledby="library-heading">
       <div class="library-heading">
         <h2 id="library-heading">Your playlists <span class="playlist-count">0</span></h2>
         <span class="library-total">0 videos</span>
       </div>
-      <!-- Playlist cards will be populated when playlist functionality is added. -->
       <div id="playlist-list" class="playlist-list">
         <div class="playlists-empty">
           <div class="empty-playlist-icon"><svg class="icon" aria-hidden="true"><use href="#icon-subscriptions"/></svg></div>
           <h3>No playlists yet</h3>
           <p>Keep your favorites together, from new discoveries to videos worth watching again.</p>
-          <p id="playlist-availability" class="playlist-availability">Playlist creation is coming soon.</p>
+          <p id="playlist-availability" class="playlist-availability">Enable JavaScript to manage your playlists.</p>
           <a class="discover-link" href="../index.html#discover">Explore videos <span aria-hidden="true">&rarr;</span></a>
         </div>
       </div>

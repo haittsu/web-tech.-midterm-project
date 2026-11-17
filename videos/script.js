@@ -222,16 +222,36 @@ function recordOpening(model) {
     }
 }
 
+function enablePlaylistSave(model) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "playlist-button";
+    button.textContent = "Save to playlist";
+    button.addEventListener("click", async () => {
+        button.disabled = true;
+        interactionStatus.textContent = "";
+        try {
+            const result = await window.saveToPlaylist(model);
+            if (result?.saved) interactionStatus.textContent = "Video saved to playlist.";
+        } catch {
+            interactionStatus.textContent = "Could not save the video. Please try again.";
+        } finally { button.disabled = false; }
+    });
+    document.querySelector(".video-actions").after(button);
+}
+
 const { Video, projectRoot } = window.CrysPlayDiscover;
 if (!isRemote) {
     initialized = true;
-    recordOpening(new Video({
+    const model = new Video({
         id: 'costa-rica',
         title: document.querySelector('#video-title').textContent,
         channel: document.querySelector('.channel-name').textContent,
         thumbnailUrl: new URL('assets/images/vid1.png', projectRoot).href,
         durationSeconds: 728
-    }));
+    });
+    enablePlaylistSave(model);
+    recordOpening(model);
     if (!video.paused && !video.ended && video.readyState >= 3) countView();
 } else {
     video.pause();
@@ -298,6 +318,7 @@ if (!isRemote) {
             player.replaceChildren(iframe);
             info.hidden = false;
             initialized = true;
+            enablePlaylistSave(model);
             recordOpening(model);
         } catch {
             document.title = 'Video unavailable - CrysPlay';
