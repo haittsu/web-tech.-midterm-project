@@ -205,6 +205,20 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     padding: 18px 0 30px;
 }
 
+.remote-player {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 16 / 9;
+}
+
+.remote-player > iframe.video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .video-info h1 {
     margin: 0 0 16px;
     font-size: 24px;
@@ -233,6 +247,21 @@ a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; border-
     align-items: center;
     gap: 10px;
     min-width: 0;
+}
+
+.video-secondary-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.video-secondary-actions > button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
 }
 
 .channel-avatar {

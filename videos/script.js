@@ -237,7 +237,7 @@ function enablePlaylistSave(model) {
             interactionStatus.textContent = "Could not save the video. Please try again.";
         } finally { button.disabled = false; }
     });
-    document.querySelector(".video-actions").after(button);
+    document.querySelector(".video-secondary-actions").prepend(button);
 }
 
 const { Video, projectRoot } = window.CrysPlayDiscover;
@@ -259,6 +259,7 @@ if (!isRemote) {
     video.removeAttribute('src');
     video.load();
     const player = document.createElement('div');
+    player.className = 'remote-player';
     video.replaceWith(player);
     const info = document.querySelector('.video-info');
     const status = document.createElement('p');
