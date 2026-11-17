@@ -1,4 +1,10 @@
-const storageKey = 'crysplay:video-1';
+const videoId = new URLSearchParams(window.location.search).get('id');
+const isRemote = videoId !== null;
+const remoteId = videoId?.toLowerCase();
+const storageKey = isRemote ? 'crysplay:peertube:' + remoteId : 'crysplay:video-1';
+let remoteViews = 0;
+let initialized = false;
+let openingRecorded = false;
 const userStorageKey = 'crysplay:user';
 let activeUser;
 try {
@@ -91,7 +97,8 @@ descriptionButton.addEventListener('click', () => {
 renderDescription();
 
 function renderActions() {
-    document.querySelector('#view-count').textContent = `${state.views.toLocaleString()} ${state.views === 1 ? 'view' : 'views'}`;
+    const views = isRemote ? remoteViews : state.views;
+    document.querySelector('#view-count').textContent = `${views.toLocaleString()} ${views === 1 ? 'view' : 'views'}`;
     likeButton.setAttribute('aria-pressed', String(state.liked));
     document.querySelector('#like-label').textContent = state.liked ? 'Liked' : 'Like';
     document.querySelector('#like-count').textContent = state.liked ? '1 like' : '0 likes';
@@ -131,7 +138,7 @@ function countView() {
     saveState();
 }
 
-video.addEventListener('playing', countView);
+if (!isRemote) video.addEventListener('playing', countView);
 
 function animateLike() {
     // Keep the controls working even if the jQuery CDN is unavailable.
@@ -192,4 +199,112 @@ commentInput.value = state.draft;
 renderActions();
 renderComments();
 
-if (!video.paused && !video.ended && video.readyState >= 3) countView();
+function recordOpening(model) {
+    if (openingRecorded) return;
+    openingRecorded = true;
+    try {
+        if (typeof window.recordVideoOpen === 'function') {
+            Promise.resolve(window.recordVideoOpen(model)).catch(() => {
+                storageStatus.textContent = 'This opening could not be saved.';
+            });
+        } else {
+            const key = 'crysplay:history';
+            const saved = JSON.parse(localStorage.getItem(key) || '[]');
+            const history = Array.isArray(saved) ? saved : [];
+            history.push({ video: model.toJSON(), openedAt: new Date().toISOString() });
+            localStorage.setItem(key, JSON.stringify(history));
+        }
+    } catch {
+        storageStatus.textContent = 'This opening could not be saved.';
+    }
+}
+
+const { Video, projectRoot } = window.CrysPlayDiscover;
+if (!isRemote) {
+    initialized = true;
+    recordOpening(new Video({
+        id: 'costa-rica',
+        title: document.querySelector('#video-title').textContent,
+        channel: document.querySelector('.channel-name').textContent,
+        thumbnailUrl: new URL('assets/images/vid1.png', projectRoot).href,
+        durationSeconds: 728
+    }));
+    if (!video.paused && !video.ended && video.readyState >= 3) countView();
+} else {
+    video.pause();
+    video.removeAttribute('autoplay');
+    video.removeAttribute('src');
+    video.load();
+    const player = document.createElement('div');
+    video.replaceWith(player);
+    const info = document.querySelector('.video-info');
+    const status = document.createElement('p');
+    status.setAttribute('role', 'status');
+    const retry = document.createElement('button');
+    retry.type = 'button';
+    retry.className = 'btn btn-outline-secondary';
+    retry.textContent = 'Retry';
+    retry.addEventListener('click', loadRemoteVideo);
+
+    async function loadRemoteVideo() {
+        if (initialized) return;
+        info.hidden = true;
+        document.title = 'Loading video - CrysPlay';
+        status.textContent = 'Loading video...';
+        retry.disabled = true;
+        player.replaceChildren(status);
+        player.setAttribute('aria-busy', 'true');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        try {
+            if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(remoteId)) {
+                throw new Error('Invalid UUID');
+            }
+            const response = await fetch(
+                'https://video.blender.org/api/v1/videos/' + encodeURIComponent(remoteId),
+                { signal: controller.signal }
+            );
+            if (!response.ok) throw new Error('Video unavailable');
+            const video = await response.json();
+            const model = Video.fromPeerTube(video);
+            if (video.uuid.toLowerCase() !== remoteId ||
+                typeof video.embedPath !== 'string' || !video.embedPath.trim() ||
+                !Number.isSafeInteger(video.views) || video.views < 0) {
+                throw new Error('Invalid video details');
+            }
+            const source = new URL(video.embedPath, 'https://video.blender.org');
+            if (source.origin !== 'https://video.blender.org' || source.username || source.password) {
+                throw new Error('Invalid player URL');
+            }
+            const iframe = document.createElement('iframe');
+            iframe.className = 'video';
+            iframe.style.border = '0';
+            iframe.src = source.href;
+            iframe.title = 'Video player: ' + video.name;
+            iframe.allow = 'fullscreen; autoplay; picture-in-picture';
+            iframe.allowFullscreen = true;
+            document.querySelector('#video-title').textContent = video.name;
+            document.title = video.name;
+            description.textContent = typeof video.description === 'string' && video.description.trim()
+                ? video.description : 'No description available';
+            document.querySelector('.channel-name').textContent = video.channel?.displayName || 'PeerTube';
+            document.querySelector('.channel-avatar').textContent = model.channel.charAt(0);
+            remoteViews = video.views;
+            renderActions();
+            player.replaceChildren(iframe);
+            info.hidden = false;
+            initialized = true;
+            recordOpening(model);
+        } catch {
+            document.title = 'Video unavailable - CrysPlay';
+            status.textContent = 'This video could not be loaded. Please try again.';
+            retry.disabled = false;
+            player.replaceChildren(status, retry);
+        } finally {
+            clearTimeout(timeout);
+            player.setAttribute('aria-busy', 'false');
+        }
+    }
+
+    loadRemoteVideo();
+}
