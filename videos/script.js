@@ -3,6 +3,7 @@ const isRemote = videoId !== null;
 const remoteId = videoId?.toLowerCase();
 const storageKey = isRemote ? 'crysplay:peertube:' + remoteId : 'crysplay:video-1';
 let remoteViews = 0;
+let remoteLikes = 0;
 let initialized = false;
 let openingRecorded = false;
 const userStorageKey = 'crysplay:user';
@@ -101,7 +102,9 @@ function renderActions() {
     document.querySelector('#view-count').textContent = `${views.toLocaleString()} ${views === 1 ? 'view' : 'views'}`;
     likeButton.setAttribute('aria-pressed', String(state.liked));
     document.querySelector('#like-label').textContent = state.liked ? 'Liked' : 'Like';
-    document.querySelector('#like-count').textContent = state.liked ? '1 like' : '0 likes';
+    // PeerTube supplies the baseline; our saved like only changes this browser's count.
+    const likes = (isRemote ? remoteLikes : 0) + (state.liked ? 1 : 0);
+    document.querySelector('#like-count').textContent = `${likes.toLocaleString()} ${likes === 1 ? 'like' : 'likes'}`;
     subscribeButton.setAttribute('aria-pressed', String(state.subscribed));
     subscribeButton.textContent = state.subscribed ? 'Subscribed' : 'Subscribe';
 }
@@ -290,6 +293,7 @@ if (!isRemote) {
             document.querySelector('.channel-name').textContent = video.channel?.displayName || 'PeerTube';
             document.querySelector('.channel-avatar').textContent = model.channel.charAt(0);
             remoteViews = video.views;
+            remoteLikes = Number.isSafeInteger(video.likes) && video.likes >= 0 ? video.likes : 0;
             renderActions();
             player.replaceChildren(iframe);
             info.hidden = false;
