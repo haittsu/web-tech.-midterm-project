@@ -206,17 +206,9 @@ function recordOpening(model) {
     if (openingRecorded) return;
     openingRecorded = true;
     try {
-        if (typeof window.recordVideoOpen === 'function') {
-            Promise.resolve(window.recordVideoOpen(model)).catch(() => {
-                storageStatus.textContent = 'This opening could not be saved.';
-            });
-        } else {
-            const key = 'crysplay:history';
-            const saved = JSON.parse(localStorage.getItem(key) || '[]');
-            const history = Array.isArray(saved) ? saved : [];
-            history.push({ video: model.toJSON(), openedAt: new Date().toISOString() });
-            localStorage.setItem(key, JSON.stringify(history));
-        }
+        Promise.resolve(window.recordVideoOpen(model)).catch(() => {
+            storageStatus.textContent = 'This opening could not be saved.';
+        });
     } catch {
         storageStatus.textContent = 'This opening could not be saved.';
     }

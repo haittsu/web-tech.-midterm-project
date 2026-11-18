@@ -48,6 +48,9 @@
 
   app.createVideoCardShell = createVideoCardShell;
 
+  // Discover reuses the card shell without rendering the legacy local feed.
+  if (!grid) return;
+
   function createVideoCard(video) {
     const column = createVideoCardShell(video);
     const saveButton = column.querySelector(".save-video");

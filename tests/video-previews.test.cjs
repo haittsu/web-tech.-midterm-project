@@ -6,8 +6,10 @@ const { test } = require("node:test");
 
 const root = path.join(__dirname, "..");
 const source = fs.readFileSync(path.join(root, "assets/js/video-previews.js"), "utf8");
-const html = fs.readFileSync(path.join(root, "index.html"), "utf8");
-const sources = [...html.matchAll(/data-preview-src="([^"]+)"/g)].map(match => match[1]);
+const catalogSource = fs.readFileSync(path.join(root, "assets/js/app-data.js"), "utf8");
+const catalog = { window: {}, structuredClone };
+vm.runInNewContext(catalogSource, catalog);
+const sources = Array.from(catalog.window.CrysPlay.videos, video => video.previewSrc);
 
 // Mock browser boundaries to exercise real event handlers without downloading media.
 function setup({ reducedMotion = false, saveData = false } = {}) {
@@ -123,7 +125,7 @@ function setup({ reducedMotion = false, saveData = false } = {}) {
   };
 }
 
-test("all five cards use their matching local media files", () => {
+test("legacy catalog entries retain their matching local preview media", () => {
   assert.deepEqual(sources, [
     "assets/videos/messi-barcelona-preview.mp4", "videos/vid1.mp4",
     "assets/videos/messi-argentina-preview.mp4", "assets/videos/batman-preview.mp4",

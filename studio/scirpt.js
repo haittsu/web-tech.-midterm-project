@@ -1,11 +1,11 @@
 "use strict";
 
 (() => {
-  const format = new Intl.NumberFormat("ru-RU");
-  const formatHours = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 1 });
-  const formatPercent = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 2 });
-  const formatSigned = new Intl.NumberFormat("ru-RU", { signDisplay: "exceptZero" });
-  const formatDate = new Intl.DateTimeFormat("ru-RU", {
+  const format = new Intl.NumberFormat("en");
+  const formatHours = new Intl.NumberFormat("en", { maximumFractionDigits: 1 });
+  const formatPercent = new Intl.NumberFormat("en", { maximumFractionDigits: 2 });
+  const formatSigned = new Intl.NumberFormat("en", { signDisplay: "exceptZero" });
+  const formatDate = new Intl.DateTimeFormat("en", {
     day: "numeric", month: "long", year: "numeric", timeZone: "UTC"
   });
   const countFields = ["views", "likes", "comments", "subscribers"];
@@ -18,7 +18,7 @@
   function readConfig() {
     const config = JSON.parse(document.getElementById("studio-data").textContent);
     if (!Array.isArray(config?.videos) || !Array.isArray(config.audience)) {
-      throw new Error("В конфиге Studio должны быть массивы videos и audience.");
+      throw new Error("Studio configuration must contain videos and audience arrays.");
     }
 
     const textFields = ["id", "title", "thumbnail", "duration"];
@@ -26,19 +26,19 @@
     for (const video of config.videos) {
       if (!video || !textFields.every(field => typeof video[field] === "string") ||
           !numberFields.every(field => Number.isFinite(video[field]))) {
-        throw new Error("Проверь текстовые и числовые поля роликов в конфиге Studio.");
+        throw new Error("Check video text and numeric fields in the Studio configuration.");
       }
     }
 
     for (const column of config.audience) {
-      if (!Array.isArray(column)) throw new Error("Каждая колонка audience должна быть массивом групп.");
+      if (!Array.isArray(column)) throw new Error("Each audience column must be an array of groups.");
       for (const group of column) {
         if (typeof group?.title !== "string" || !Array.isArray(group.items)) {
-          throw new Error("У каждой группы аудитории нужны title и массив items.");
+          throw new Error("Each audience group needs a title and an items array.");
         }
         for (const item of group.items) {
           if (typeof item?.label !== "string" || !Number.isFinite(item.percent) || item.percent < 0 || item.percent > 100) {
-            throw new Error("У каждой строки аудитории нужны label и percent от 0 до 100.");
+            throw new Error("Each audience item needs a label and a percentage from 0 to 100.");
           }
         }
       }
@@ -55,7 +55,7 @@
     if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== value) return;
 
     time.dateTime = value;
-    setText(time, "Опубликовано " + formatDate.format(date));
+    setText(time, "Published " + formatDate.format(date));
     time.parentElement.classList.remove("d-none");
   }
 
@@ -129,7 +129,7 @@
     config = readConfig();
   } catch (error) {
     const message = document.getElementById("studio-config-error");
-    setText(message, error instanceof SyntaxError ? "Проверь синтаксис JSON в блоке studio-data." : error.message);
+    setText(message, error instanceof SyntaxError ? "Check the JSON syntax in studio-data." : error.message);
     message.hidden = false;
     return;
   }
@@ -149,7 +149,7 @@
   for (const element of document.querySelectorAll("[data-total]")) {
     const metric = element.dataset.total;
     const value = metric === "watch-hours"
-      ? formatHours.format(watchSeconds / 3600) + " ч"
+      ? formatHours.format(watchSeconds / 3600) + " h"
       : formatCount(metric, totals[metric]);
     setText(element, value);
   }
@@ -162,7 +162,7 @@
   const metricSelect = document.getElementById("chart-metric");
   const sortButton = document.getElementById("sort-views");
   const sortStatus = document.getElementById("views-sort-status");
-  const metricNames = { views: "просмотров", likes: "лайков", comments: "комментариев" };
+  const metricNames = { views: "views", likes: "likes", comments: "comments" };
   let sortDirection = 0;
 
   const chartRows = videos.map(video => {
@@ -182,8 +182,8 @@
       sortDirection * (first.video[metric] - second.video[metric])
     );
 
-    setText(chartHeading, "Распределение " + name);
-    setText(chartDescription, "Доля каждого ролика в общем числе " + name + " канала");
+    setText(chartHeading, "Distribution of " + name);
+    setText(chartDescription, "Each video's share of sample channel " + name);
     setText(chartTotal, format.format(total));
 
     for (const { video, item, bar, count } of rows) {
@@ -193,8 +193,8 @@
       chart.append(item);
     }
 
-    setText(sortButton, (sortDirection === -1 ? "Сначала меньше " : "Сначала больше ") + name);
-    const order = sortDirection === -1 ? "По убыванию " : "По возрастанию ";
+    setText(sortButton, (sortDirection === -1 ? "Lowest first: " : "Highest first: ") + name);
+    const order = sortDirection === -1 ? "Descending: " : "Ascending: ";
     setText(sortStatus, sortDirection === 0 ? "" : order + name);
   }
 

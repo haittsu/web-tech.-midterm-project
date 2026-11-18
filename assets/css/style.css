@@ -148,9 +148,9 @@ h1 { margin: 0; font-size: clamp(25px, 2vw, 34px); font-weight: 700; letter-spac
 .feed-notice button { width: 28px; height: 28px; padding: 0; border: 0; border-radius: 5px; background: var(--surface); color: var(--muted); font-size: 20px; cursor: pointer; }
 
 /* Discover shares the existing card template and Bootstrap grid. */
-.discover-section { margin-top: 42px; padding-top: 30px; border-top: 1px solid var(--line); }
+.discover-section { margin: 0; padding: 0; }
 .discover-heading { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; margin-bottom: 22px; }
-.discover-heading h2 { margin: 0 0 9px; font-size: clamp(25px, 2vw, 32px); font-weight: 700; letter-spacing: -.8px; }
+.discover-heading h1, .discover-heading h2 { margin: 0 0 9px; font-size: clamp(25px, 2vw, 32px); font-weight: 700; letter-spacing: -.8px; }
 .discover-heading p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
 .discover-heading .discover-eyebrow { margin-bottom: 7px; color: var(--accent); font-size: 9px; font-weight: 700; letter-spacing: 1.5px; }
 .discover-source { margin-top: 5px; color: var(--accent); font-size: 11px; white-space: nowrap; }

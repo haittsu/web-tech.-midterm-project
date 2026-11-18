@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crystal Play kz — футбол, природа, кино, челленджи и короткие видео Shorts.">
-    <title>Crystal Play kz — Главная</title>
+    <meta name="description" content="CrysPlay — discover videos from the Blender community.">
+    <title>CrysPlay — Discover</title>
     <link rel="icon" type="image/png" href="assets/general/favicon.png">
     <link rel="stylesheet" href="assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -14,7 +14,6 @@
     <script src="assets/js/video.js" defer></script>
     <script src="assets/js/playlists.js" defer></script>
     <script src="assets/js/feed.js" defer></script>
-    <script src="assets/js/video-previews.js" defer></script>
     <script src="assets/js/discover.js" defer></script>
   </head>
   <body>
@@ -44,8 +43,8 @@
                 </a>
                 <form class="search-form" role="search" aria-label="Search Video">
                 <label class="visually-hidden" for="video-search">Search Video</label>
-                <input class="form-control" id="video-search" type="search" placeholder="Найти видео или канал…" maxlength="200" aria-controls="video-grid">
-                <button type="submit" class="search-button" aria-label="Найти видео">
+                <input class="form-control" id="video-search" type="search" placeholder="Search videos or channels…" maxlength="200" aria-controls="discover-grid">
+                <button type="submit" class="search-button" aria-label="Find videos">
                     <svg class="icon" aria-hidden="true"><use href="#icon-search"/></svg>
                 </button>
                 </form>
@@ -120,134 +119,19 @@
       </aside>
 
       <main class="main-content" id="main-content">
-        <section aria-labelledby="recommendations-heading">
-          <div class="section-heading d-flex align-items-center justify-content-between">
-            <div><h1 id="recommendations-heading">Рекомендации</h1></div>
-            <span class="feed-label"><span></span>Видео для тебя</span>
-          </div>
-          <ul class="category-list list-unstyled" aria-label="Категории видео">
-            <li><button class="category is-selected" type="button" data-category="all" aria-pressed="true">Все видео</button></li>
-            <li><button class="category" type="button" data-category="football" aria-pressed="false">Футбол</button></li>
-            <li><button class="category" type="button" data-category="nature" aria-pressed="false">Природа</button></li>
-            <li><button class="category" type="button" data-category="challenges" aria-pressed="false">Челленджи</button></li>
-            <li><button class="category" type="button" data-category="movies" aria-pressed="false">Кино</button></li>
-            <li><button class="category" type="button" data-category="4k" aria-pressed="false">4K HDR</button></li>
-          </ul>
-          <div class="feed-toolbar">
-            <button class="watch-later-toggle" id="watch-later-toggle" type="button" aria-pressed="false" aria-controls="video-grid">Смотреть позже <span id="watch-later-count">0</span></button>
-            <p id="result-count" role="status" aria-live="polite" aria-atomic="true"></p>
-          </div>
-          <div class="feed-empty" id="feed-empty" hidden>
-            <h2 id="empty-title">Ничего не найдено</h2>
-            <p id="empty-description">Попробуй другое название, канал или категорию.</p>
-            <button class="feed-primary-button" id="reset-filters" type="button">Показать все видео</button>
-          </div>
-
-          <!-- Bootstrap Grid: 1 столбец на телефоне, 2 на планшете, 3 на компьютере. -->
-          <div class="video-grid row row-cols-1 row-cols-md-2 row-cols-lg-3" id="video-grid">
-            <div class="col">
-              <article class="video-card" data-preview-src="assets/videos/messi-barcelona-preview.mp4">
-                <div class="video-thumbnail">
-                  <img src="assets/images/messi-barcelona.jpg" alt="Лионель Месси празднует гол в форме Барселоны на стадионе" width="550" height="310">
-                  <span class="duration">10:24</span>
-                </div>
-                <div class="video-details">
-                  <span class="channel-avatar" aria-hidden="true">F</span>
-                  <div class="video-text">
-                    <h2>Месси в «Барселоне»: голы и незабываемые празднования</h2>
-                    <p class="channel-name">Football Stories</p>
-                    <p class="video-stats">128 тыс. просмотров <span>·</span> 2 дня назад</p>
-                  </div>
-                  <span class="card-more" aria-hidden="true">⋮</span>
-                </div>
-              </article>
-            </div>
-            <div class="col">
-              <article class="video-card" data-preview-src="videos/vid1.mp4">
-                <a class="video-link" href="videos/video-1.html" aria-label="Смотреть COSTA RICA IN 4K 60fps HDR (ULTRA HD)">
-                  <div class="video-thumbnail">
-                    <img src="assets/images/vid1.png" alt="Река и облака с надписями OLED Dolby Vision и 4K HDR" width="720" height="404">
-                    <span class="duration">12:08</span>
-                  </div>
-                  <div class="video-details">
-                    <span class="channel-avatar" aria-hidden="true">8</span>
-                    <div class="video-text">
-                      <h2>COSTA RICA IN 4K 60fps HDR (ULTRA HD)</h2>
-                      <p class="channel-name">Jacob + Katie Schwarz</p>
-                      <p class="video-stats">31 тыс. просмотров <span>·</span> 1 день назад</p>
-                    </div>
-                    <span class="card-more" aria-hidden="true">⋮</span>
-                  </div>
-                </a>
-              </article>
-            </div>
-            <div class="col">
-              <article class="video-card" data-preview-src="assets/videos/messi-argentina-preview.mp4">
-                <div class="video-thumbnail">
-                  <img src="assets/images/messi-argentina.jpg" alt="Лионель Месси в форме сборной Аргентины с руками у ушей" width="739" height="415" loading="lazy">
-                  <span class="duration">08:35</span>
-                </div>
-                <div class="video-details">
-                  <span class="channel-avatar" aria-hidden="true">A</span>
-                  <div class="video-text">
-                    <h2>Лионель Месси: лучшие моменты за сборную Аргентины</h2>
-                    <p class="channel-name">Argentina Highlights</p>
-                    <p class="video-stats">204 тыс. просмотров <span>·</span> 3 дня назад</p>
-                  </div>
-                  <span class="card-more" aria-hidden="true">⋮</span>
-                </div>
-              </article>
-            </div>
-            <div class="col">
-              <article class="video-card" data-preview-src="assets/videos/batman-preview.mp4">
-                <div class="video-thumbnail">
-                  <img src="assets/images/vid3.webp" alt="Загадочник из фильма «Бэтмен» с надписью Does he know?" width="800" height="450" loading="lazy">
-                  <span class="duration">15:37</span>
-                </div>
-                <div class="video-details">
-                  <span class="channel-avatar" aria-hidden="true">N</span>
-                  <div class="video-text">
-                    <h2>The Batman: Does Riddler Actually KNOW Batman = Bruce?</h2>
-                    <p class="channel-name">New Rockstars</p>
-                    <p class="video-stats">94 тыс. просмотров <span>·</span> 1 день назад</p>
-                  </div>
-                  <span class="card-more" aria-hidden="true">⋮</span>
-                </div>
-              </article>
-            </div>
-            <div class="col">
-              <article class="video-card" data-preview-src="assets/videos/ronaldo-messi-preview.mp4">
-                <div class="video-thumbnail">
-                  <img src="assets/images/ronaldo-messi.jpg" alt="Портреты Криштиану Роналду и Лионеля Месси рядом" width="739" height="415" loading="lazy">
-                  <span class="duration">21:16</span>
-                </div>
-                <div class="video-details">
-                  <span class="channel-avatar" aria-hidden="true">F</span>
-                  <div class="video-text">
-                    <h2>Роналду и Месси: два пути к вершине футбола</h2>
-                    <p class="channel-name">Football Debate</p>
-                    <p class="video-stats">312 тыс. просмотров <span>·</span> 5 дней назад</p>
-                  </div>
-                  <span class="card-more" aria-hidden="true">⋮</span>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
-
         <section class="discover-section" id="discover" aria-labelledby="discover-heading">
           <div class="discover-heading">
-            <div><p class="discover-eyebrow">PEERTUBE · BLENDER</p><h2 id="discover-heading">Discover</h2><p>Открывай анимацию, творчество и новые идеи сообщества Blender.</p></div>
+            <div><p class="discover-eyebrow">PEERTUBE · BLENDER</p><h1 id="discover-heading">Discover</h1><p>Explore animation, creativity, and new ideas from the Blender community.</p></div>
             <a class="discover-source" href="https://video.blender.org" target="_blank" rel="noopener noreferrer">Blender Video ↗</a>
           </div>
           <div class="discover-toolbar">
-            <p class="discover-status" id="discover-status" role="status" aria-live="polite" aria-atomic="true" data-state="loading">Загружаем видео из Blender…</p>
-            <button class="discover-retry" id="discover-retry" type="button" aria-controls="discover-grid" hidden>Повторить</button>
+            <p class="discover-status" id="discover-status" role="status" aria-live="polite" aria-atomic="true" data-state="loading">Loading videos from Blender…</p>
+            <button class="discover-retry" id="discover-retry" type="button" aria-controls="discover-grid" hidden>Retry</button>
           </div>
           <p class="discover-feedback" id="discover-feedback" role="status" aria-live="polite" hidden></p>
           <div class="video-grid row row-cols-1 row-cols-md-2 row-cols-lg-3" id="discover-grid" aria-busy="true"></div>
         </section>
-        <noscript><p>Включи JavaScript, чтобы пользоваться поиском, категориями, сохранением, отправкой видео и каталогом Discover.</p></noscript>
+        <noscript><p>Enable JavaScript to search and load videos from Discover.</p></noscript>
         <footer class="main-footer d-flex justify-content-between"><span>Открывай новое. Каждый день.</span><span>Crystal Play kz © 2026</span></footer>
       </main>
     </div>
@@ -271,18 +155,5 @@
         </article>
       </div>
     </template>
-    <dialog class="share-dialog" id="share-dialog" aria-labelledby="share-heading">
-      <div class="share-dialog-heading"><h2 id="share-heading">Отправить видео</h2><button class="dialog-close" id="share-close" type="button" aria-label="Закрыть">×</button></div>
-      <div class="share-video-summary"><img id="share-video-image" width="120" height="68" alt=""><p id="share-video-title"></p></div>
-      <form id="share-form" novalidate>
-        <label for="share-recipient">Кому отправить</label>
-        <select id="share-recipient" name="recipient" required aria-describedby="share-error"><option value="">Выбери контакт</option></select>
-        <p class="share-error" id="share-error" role="alert"></p>
-        <button class="feed-primary-button" id="share-submit" type="submit">Отправить</button>
-      </form>
-    </dialog>
-    <div class="feed-notice" id="feed-notice" role="status" aria-live="polite" aria-atomic="true" hidden>
-      <span id="notice-text"></span><a id="notice-link" hidden>Открыть чат</a><button id="notice-close" type="button" aria-label="Закрыть уведомление">×</button>
-    </div>
   </body>
 </html>

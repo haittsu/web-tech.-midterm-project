@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Crystal Play Studio — аналитика канала.">
-    <title>Crystal Play kz — Studio Analytics</title>
+    <meta name="description" content="CrysPlay Studio — your video history and personal activity statistics.">
+    <title>CrysPlay Studio — Your Activity</title>
     <link rel="icon" type="image/svg+xml" href="../assets/icons/favicon.svg">
     <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="history.css">
     <script src="../assets/js/user-state.js" defer></script>
+    <script src="../assets/js/video.js" defer></script>
+    <script src="../assets/js/history.js" defer></script>
+    <script src="history.js" defer></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
     <script type="application/json" id="studio-data">
     {
@@ -95,31 +99,31 @@
       "audience": [
         [
           {
-            "title": "Пол",
+            "title": "Gender",
             "items": [
               {
-                "label": "Мужчины",
+                "label": "Men",
                 "percent": 62
               },
               {
-                "label": "Женщины",
+                "label": "Women",
                 "percent": 38
               }
             ]
           },
           {
-            "title": "Устройства",
+            "title": "Devices",
             "items": [
               {
-                "label": "Смартфоны",
+                "label": "Phones",
                 "percent": 72
               },
               {
-                "label": "Компьютеры",
+                "label": "Computers",
                 "percent": 23
               },
               {
-                "label": "Планшеты",
+                "label": "Tablets",
                 "percent": 5
               }
             ]
@@ -127,26 +131,26 @@
         ],
         [
           {
-            "title": "Возраст",
+            "title": "Age",
             "items": [
               {
-                "label": "13–17 лет",
+                "label": "13–17 years",
                 "percent": 12
               },
               {
-                "label": "18–24 года",
+                "label": "18–24 years",
                 "percent": 39
               },
               {
-                "label": "25–34 года",
+                "label": "25–34 years",
                 "percent": 30
               },
               {
-                "label": "35–44 года",
+                "label": "35–44 years",
                 "percent": 12
               },
               {
-                "label": "45 лет и старше",
+                "label": "45 years and older",
                 "percent": 7
               }
             ]
@@ -154,26 +158,26 @@
         ],
         [
           {
-            "title": "Страны",
+            "title": "Countries",
             "items": [
               {
-                "label": "Казахстан",
+                "label": "Kazakhstan",
                 "percent": 46
               },
               {
-                "label": "Россия",
+                "label": "Russia",
                 "percent": 25
               },
               {
-                "label": "Узбекистан",
+                "label": "Uzbekistan",
                 "percent": 12
               },
               {
-                "label": "Кыргызстан",
+                "label": "Kyrgyzstan",
                 "percent": 7
               },
               {
-                "label": "Другие страны",
+                "label": "Other countries",
                 "percent": 10
               }
             ]
@@ -235,13 +239,13 @@
 
     <header class="site-header" id="top">
       <div class="header-inner container-fluid">
-        <a class="brand" href="../index.html" aria-label="CrysPlay, главная"><img src="../assets/general/logo.png" alt="CrysPlay" class="logo"></a>
-        <form class="search-form" role="search" aria-label="Поиск видео">
-          <label class="visually-hidden" for="video-search">Поиск видео</label>
-          <input class="form-control" id="video-search" type="search" placeholder="Найти что-то интересное..." disabled>
-          <button type="button" class="search-button" aria-label="Найти видео" disabled><svg class="icon"><use href="#icon-search"/></svg></button>
+        <a class="brand" href="../index.html" aria-label="CrysPlay home"><img src="../assets/general/logo.png" alt="CrysPlay" class="logo"></a>
+        <form class="search-form" role="search" aria-label="Video search">
+          <label class="visually-hidden" for="video-search">Video search</label>
+          <input class="form-control" id="video-search" type="search" placeholder="Find something interesting..." disabled>
+          <button type="button" class="search-button" aria-label="Find videos" disabled><svg class="icon"><use href="#icon-search"/></svg></button>
         </form>
-        <nav class="main-nav" aria-label="Главная навигация">
+        <nav class="main-nav" aria-label="Main navigation">
           <ul class="list-unstyled mb-0">
             <li><a href="../index.html" class="nav-item"><svg class="icon"><use href="#icon-home"/></svg><span>Main</span></a></li>
             <li><span class="nav-item" aria-disabled="true"><svg class="icon"><use href="#icon-trending"/></svg><span>Trends</span></span></li>
@@ -252,50 +256,74 @@
         <div class="header-actions d-flex align-items-center">
                 <a class="icon-button messenger-button" href="../messenger/index.html" aria-label="Messages"><svg class="icon" aria-hidden="true"><use href="#icon-messenger"/></svg></a>
                 <button class="icon-button notification-button" type="button" aria-label="Notifications" disabled><svg class="icon" aria-hidden="true"><use href="#icon-bell"/></svg><span class="notification-dot"></span></button>
-                <a class="profile-avatar" href="../login/index.html" aria-label="Войти в аккаунт">А</a>
+                <a class="profile-avatar" href="../login/index.html" aria-label="Sign in">G</a>
         </div>
       </div>
     </header>
 
     <div class="page-layout container-fluid studio-layout">
-      <aside class="sidebar studio-sidebar" aria-label="Разделы Studio">
+      <aside class="sidebar studio-sidebar" aria-label="Studio sections">
         <div class="studio-channel"><span class="studio-avatar" data-user-avatar>G</span><div><strong data-user-name>Guest</strong><span data-user-handle>Sign in to personalize your studio</span></div></div>
-        <p class="studio-menu-label">Панель управления</p>
+        <p class="studio-menu-label">Dashboard</p>
         <nav><ul class="studio-menu list-unstyled">
-          <li><a class="is-active" href="#analytics"><svg class="icon"><use href="#icon-chart"/></svg>Аналитика</a></li>
-          <li><a href="#audience"><svg class="icon"><use href="#icon-users"/></svg>Аудитория</a></li>
-          <li><a href="#content"><svg class="icon"><use href="#icon-video"/></svg>Контент</a></li>
-          <li><a href="#comments"><svg class="icon"><use href="#icon-comment"/></svg>Комментарии</a></li>
+          <li><a class="is-active" href="#personal-activity"><svg class="icon"><use href="#icon-library"/></svg>Your activity</a></li>
+          <li><a href="#sample-analytics"><svg class="icon"><use href="#icon-video"/></svg>Sample analytics</a></li>
+          <li><a href="#audience"><svg class="icon"><use href="#icon-users"/></svg>Audience</a></li>
+          <li><a href="#content"><svg class="icon"><use href="#icon-video"/></svg>Content</a></li>
+          <li><a href="#comments"><svg class="icon"><use href="#icon-comment"/></svg>Comments</a></li>
         </ul></nav>
-        <div class="studio-tip"><span>Статистика канала</span><p>Итоги рассчитаны по роликам из таблицы «Эффективность контента».</p></div>
+        <div class="studio-tip"><span>Personal history</span><p>Your activity is based on your video openings. Channel analytics below use sample data.</p></div>
       </aside>
 
       <main class="main-content studio-content" id="analytics">
-        <div class="section-heading studio-heading"><div><p class="eyebrow">CRYSTAL PLAY STUDIO</p><h1>Аналитика канала<span class="title-dot">.</span></h1></div><span class="studio-period">Все ролики канала</span></div>
+        <div class="section-heading studio-heading"><div><p class="eyebrow">CRYSTAL PLAY STUDIO</p><h1>Your activity<span class="title-dot">.</span></h1></div><span class="studio-period">All-time history</span></div>
+
+        <section id="personal-activity" lang="en" aria-labelledby="activity-heading">
+          <h2 id="activity-heading" class="visually-hidden">Personal video activity</h2>
+          <p class="history-intro">Your video openings, saved for your account. Statistics cover your full history.</p>
+          <div class="studio-overview history-overview" aria-label="Personal activity statistics">
+            <article class="metric-card"><span class="metric-label">Video openings</span><strong data-history-stat="totalOpens">—</strong><p><span>Every successful opening counts</span></p></article>
+            <article class="metric-card"><span class="metric-label">Unique videos</span><strong data-history-stat="uniqueVideos">—</strong><p><span>Different videos you have opened</span></p></article>
+            <article class="metric-card"><span class="metric-label">Most opened channel</span><strong data-history-stat="topChannel">—</strong><p><span>Based on all your openings</span></p></article>
+          </div>
+          <section class="analytics-card" aria-labelledby="history-heading">
+            <div class="analytics-card-header history-card-header">
+              <div><h2 id="history-heading">Recent video openings</h2><p id="history-summary">Your latest 10 openings will appear here.</p></div>
+              <button id="clear-history" class="btn btn-sm btn-outline-secondary history-clear" type="button" aria-controls="history-list" disabled>Clear history</button>
+            </div>
+            <p id="history-error" class="alert alert-warning history-error" role="alert" hidden></p>
+            <p id="history-empty" class="history-empty" hidden><span id="history-empty-message">No video openings yet.</span><a id="history-empty-link" href="../index.html">Browse videos</a></p>
+            <ol id="history-list" class="history-list" aria-label="Latest video openings"></ol>
+            <p id="history-status" class="history-status" role="status" aria-live="polite" aria-atomic="true"></p>
+          </section>
+        </section>
 
         <p class="alert alert-warning" id="studio-config-error" role="alert" hidden></p>
-        <noscript><p class="alert alert-info">Включите JavaScript, чтобы увидеть данные Studio.</p></noscript>
+        <noscript><p class="alert alert-info">Enable JavaScript to see your Studio activity.</p></noscript>
 
-        <section class="studio-overview" aria-label="Основные показатели">
-          <article class="metric-card"><span class="metric-label">Просмотры</span><strong data-total="views">—</strong><p><span>По роликам канала</span></p></article>
-          <article class="metric-card"><span class="metric-label">Лайки</span><strong data-total="likes">—</strong><p><span>По доступным данным</span></p></article>
-          <article class="metric-card"><span class="metric-label">Комментарии</span><strong data-total="comments">—</strong><p><span>По доступным данным</span></p></article>
-          <article class="metric-card"><span class="metric-label">Время просмотра</span><strong data-total="watch-hours">—</strong><p><span>Оценка по известной средней длительности</span></p></article>
-          <article class="metric-card"><span class="metric-label">Подписки</span><strong data-total="subscribers">—</strong><p><span>По доступным данным</span></p></article>
+        <div class="sample-analytics-heading" id="sample-analytics"><h2>Sample channel analytics</h2><span class="studio-sample-label">Demo data</span></div>
+        <p class="sample-analytics-description">The sections below use sample channel data. Your personal activity is shown above.</p>
+
+        <section class="studio-overview" aria-label="Sample channel statistics">
+          <article class="metric-card"><span class="metric-label">Views</span><strong data-total="views">—</strong><p><span>Across sample channel videos</span></p></article>
+          <article class="metric-card"><span class="metric-label">Likes</span><strong data-total="likes">—</strong><p><span>Based on sample data</span></p></article>
+          <article class="metric-card"><span class="metric-label">Comments</span><strong data-total="comments">—</strong><p><span>Based on sample data</span></p></article>
+          <article class="metric-card"><span class="metric-label">Watch time</span><strong data-total="watch-hours">—</strong><p><span>Estimated from sample average duration</span></p></article>
+          <article class="metric-card"><span class="metric-label">Subscriptions</span><strong data-total="subscribers">—</strong><p><span>Based on sample data</span></p></article>
         </section>
 
         <section class="analytics-card" aria-labelledby="views-heading">
-          <div class="analytics-card-header"><div><h2 id="views-heading">Распределение просмотров</h2><p id="chart-description">Доля каждого ролика в общем числе просмотров канала</p></div><span class="chart-total" id="chart-total">—</span></div>
+          <div class="analytics-card-header"><div><h2 id="views-heading">View distribution</h2><p id="chart-description">Each video's share of sample channel views</p></div><span class="chart-total" id="chart-total">—</span></div>
           <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
             <div class="d-flex align-items-center gap-2">
-              <label class="small fw-semibold" for="chart-metric">Показатель</label>
+              <label class="small fw-semibold" for="chart-metric">Metric</label>
               <select class="form-select form-select-sm w-auto" id="chart-metric" aria-controls="views-bars" disabled>
-                <option value="views">Просмотры</option>
-                <option value="likes">Лайки</option>
-                <option value="comments">Комментарии</option>
+                <option value="views">Views</option>
+                <option value="likes">Likes</option>
+                <option value="comments">Comments</option>
               </select>
             </div>
-            <button class="btn btn-sm btn-outline-secondary" id="sort-views" type="button" aria-controls="views-bars" disabled>Сначала больше просмотров</button>
+            <button class="btn btn-sm btn-outline-secondary" id="sort-views" type="button" aria-controls="views-bars" disabled>Highest views first</button>
             <span class="small text-muted" id="views-sort-status" role="status"></span>
           </div>
           <div class="mt-2" id="views-bars"></div>
@@ -310,8 +338,8 @@
         <section class="analytics-card" id="audience" aria-labelledby="audience-heading">
           <div class="analytics-card-header">
             <div>
-              <h2 id="audience-heading">Аудитория</h2>
-              <p>Состав аудитории канала</p>
+              <h2 id="audience-heading">Audience</h2>
+              <p>Sample channel audience</p>
             </div>
           </div>
           <div class="row row-cols-1 row-cols-lg-3 g-4 mt-0" id="audience-columns"></div>
@@ -330,11 +358,11 @@
         </section>
 
         <section class="content-table-section" id="content" aria-labelledby="content-heading">
-          <div class="analytics-card-header"><div><h2 id="content-heading">Эффективность контента</h2><p>Опубликованные ролики канала</p></div><a class="table-link" href="#content">Все видео <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
+          <div class="analytics-card-header"><div><h2 id="content-heading">Content performance</h2><p>Sample published channel videos</p></div><a class="table-link" href="#content">All videos <svg class="icon"><use href="#icon-arrow"/></svg></a></div>
           <div class="table-responsive">
             <table class="table studio-table align-middle mb-0">
-              <caption class="visually-hidden">Показатели роликов канала</caption>
-              <thead><tr><th scope="col">Видео</th><th scope="col" class="text-end">Просмотры</th><th scope="col" class="text-end">Лайки</th><th scope="col" class="text-end">Комментарии</th><th scope="col" class="text-end">CTR</th><th scope="col" class="text-end">Длина видео</th><th scope="col" class="text-end">Подписчики</th></tr></thead>
+              <caption class="visually-hidden">Sample channel video statistics</caption>
+              <thead><tr><th scope="col">Video</th><th scope="col" class="text-end">Views</th><th scope="col" class="text-end">Likes</th><th scope="col" class="text-end">Comments</th><th scope="col" class="text-end">CTR</th><th scope="col" class="text-end">Duration</th><th scope="col" class="text-end">Subscribers</th></tr></thead>
               <tbody id="studio-videos"></tbody>
             </table>
           </div>
@@ -359,24 +387,24 @@
         <section class="analytics-card mt-3" id="comments" aria-labelledby="comments-heading">
           <div class="analytics-card-header">
             <div>
-              <h2 id="comments-heading">Комментарии</h2>
-              <p>Отзывы зрителей о роликах канала</p>
+              <h2 id="comments-heading">Comments</h2>
+              <p>Sample viewer comments on channel videos</p>
             </div>
           </div>
           <ul class="list-group list-group-flush mt-2 mb-0" id="studio-comments"></ul>
-          <p class="small text-muted mt-3 mb-0" id="studio-comments-empty" hidden>Пока нет комментариев.</p>
+          <p class="small text-muted mt-3 mb-0" id="studio-comments-empty" hidden>No comments yet.</p>
           <template id="studio-comment-template">
             <li class="list-group-item px-0">
               <div class="d-flex flex-wrap align-items-baseline gap-2 small mb-1">
                 <strong class="text-break" data-comment-author></strong>
-                <span class="text-muted text-break">К видео «<span data-comment-video></span>»</span>
+                <span class="text-muted text-break">On video “<span data-comment-video></span>”</span>
               </div>
               <p class="small mb-0 text-break" data-comment-text></p>
             </li>
           </template>
         </section>
 
-        <footer class="main-footer d-flex justify-content-between"><span>Статистика по всем роликам</span><span>Crystal Play Studio © 2026</span></footer>
+        <footer class="main-footer d-flex justify-content-between"><span>Personal activity and sample channel analytics</span><span>Crystal Play Studio © 2026</span></footer>
       </main>
     </div>
   </body>
